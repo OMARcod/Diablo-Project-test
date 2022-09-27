@@ -12,7 +12,7 @@ int Player::GetLive()
 
 bool Player::IsAlive()
 {
-	assert(myLive > 0, "Error life is less than 0");
+	assert(myLive >= 0, "Error life is less than 0");
 
 	if (myLive > 0)
 	{
@@ -36,7 +36,7 @@ void Player::LoseLife(int anAttackValue)
 		myLive = 0;
 	}
 
-	assert(myLive > 0, "Error life is less than 0");
+	assert(myLive >= 0, "Error life is less than 0");
 }
 
 Player::Player()
