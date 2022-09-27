@@ -20,8 +20,6 @@ void Room::AddDoor(Door* door)
 	myDoor = door;  //need to be fixed
 }
 
-
-
 void Room::DisplayEnemiesWithNumbersAndHealth()
 {
 	for (int i = 0; i < myEnemies.size(); i++)
@@ -99,21 +97,6 @@ void Room::UseDoor() //go to next room
 {
 	//make the player chose where to go
 	//in Add door we have a pointer to the current door 
-
-	//int inputGoToRoomNr = SharedFunctions::ReadInputInt(0, 1);
-	//if (myPlayer->GetCurrentRoom() == 0)
-	//{
-	//	std::cout << "1. Next room" << std::endl;
-	//}
-	//else if (myPlayer->GetCurrentRoom() == (myEnemies.size()-1)) //check here if you get wrong last room
-	//{
-	//	std::cout << "0. Go back" << std::endl;
-	//}
-	//else
-	//{
-	//	std::cout << "0. Go back" << std::endl;
-	//	std::cout << "1. Next room" << std::endl;
-	//}
 
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
