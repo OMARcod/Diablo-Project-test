@@ -12,7 +12,7 @@ int Player::GetLive()
 	return this->myLive;
 }
 
-void  Player::AddLive(int nrToAdd)
+void  Player::AddLive()
 {
 	this->myLive += 100;
 }
@@ -30,7 +30,7 @@ void Player::GoToNextRoom()
 
 bool Player::IsAlive()
 {
-	assert(myLive >= 0, "Error life is less than 0");
+	assert(myLive >= 0);
 
 	if (myLive > 0)
 	{
@@ -54,7 +54,7 @@ void Player::LoseLife(int anAttackValue)
 		myLive = 0;
 	}
 
-	assert(myLive >= 0, "Error life is less than 0");
+	assert(myLive >= 0);
 }
 
 Player::Player()
@@ -63,7 +63,7 @@ Player::Player()
 
 }
 
-void Player::SetCurrentRoom(int aCurrentRoom)
+void Player::SetCurrentRoom(int aCurrentRoom) //??
 {
 	this->myCurrentRoom = aCurrentRoom;
 }

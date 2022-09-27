@@ -7,7 +7,7 @@ public:
 	void LoseLife(int anAttackValue);
 	int GetAttackValue();
 	int GetLive();
-	void AddLive(int nrToAdd);
+	void AddLive();
 	int GetCurrentRoom();
 	//need to be fixed
 	void GoToNextRoom();

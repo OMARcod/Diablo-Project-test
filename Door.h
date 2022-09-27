@@ -1,4 +1,5 @@
 #pragma once
+#include "SharedFunctions.h"
 class Door
 {
 public:

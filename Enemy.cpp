@@ -2,7 +2,7 @@
 
 bool Enemy::IsAlive()
 {
-	assert( myLive >= 0, "Error life is less than 0");
+	assert( myLive >= 0);
 
 	if (myLive > 0)
 	{
@@ -26,7 +26,7 @@ void Enemy::LoseLife(int anAttackValue)
 		myLive = 0;
 	}
 
-	assert(myLive >= 0, "Error life is less than 0");
+	assert(myLive >= 0);
 }
 
 int Enemy::GetAttackValue()
@@ -40,6 +40,6 @@ int Enemy::GetLive()
 }
 
 Enemy::Enemy()
-	:myLive(50),myAttackValue(10)
+	:myLive(25),myAttackValue(1)
 {	
 }
