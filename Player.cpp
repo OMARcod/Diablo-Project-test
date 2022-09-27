@@ -1,5 +1,7 @@
 #include "Player.h"
 
+
+
 int Player::GetAttackValue()
 {
     return this->myAttackValue;
@@ -8,6 +10,22 @@ int Player::GetAttackValue()
 int Player::GetLive()
 {
 	return this->myLive;
+}
+
+void  Player::AddLive(int nrToAdd)
+{
+	this->myLive += 100;
+}
+
+int Player::GetCurrentRoom()
+{
+	return this->myCurrentRoom;
+}
+
+
+void Player::GoToNextRoom()
+{
+	this->myCurrentRoom++;
 }
 
 bool Player::IsAlive()
@@ -40,6 +58,12 @@ void Player::LoseLife(int anAttackValue)
 }
 
 Player::Player()
-	:myLive(100),myAttackValue(25)
+	:myLive(100),myAttackValue(25),myCurrentRoom(0)
 {
+
+}
+
+void Player::SetCurrentRoom(int aCurrentRoom)
+{
+	this->myCurrentRoom = aCurrentRoom;
 }
