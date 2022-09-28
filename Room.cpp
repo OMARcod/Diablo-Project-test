@@ -22,10 +22,7 @@ void Room::AddDoor(Door* door)
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
 {
-	for (int i = 0; i < myEnemies.size(); i++)
-	{
 		SharedFunctions::EnemyAscii();
-	}
 	for (int i = 0; i < myEnemies.size(); i++)
 	{
 		std::cout << "Enemy Nr: " << i << " || Enemy Hp: " <<
@@ -63,6 +60,7 @@ void Room::DeleteEnemyIfDead()
 
 void Room::FightEnemies()
 {
+	system("cls");
 	std::cout << "You are in Room Nr: " << myPlayer->GetCurrentRoom() << std::endl;
 	SharedFunctions::DorrAscii();
 	system("pause");
@@ -86,7 +84,8 @@ void Room::FightEnemies()
 	}
 	if (myEnemies.size() <= 0)
 	{
-		std::cout << "The Room is Empty!" << std::endl;
+		system("cls");
+		std::cout << "The Room Nr: " << myPlayer->GetCurrentRoom() << " is Empty!" << std::endl;
 		system("pause");
 
 	}

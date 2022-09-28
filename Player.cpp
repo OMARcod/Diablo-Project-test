@@ -9,12 +9,12 @@ int Player::GetAttackValue()
 
 int Player::GetLive()
 {
-	return this->myLive;
+	return this->myHealth;
 }
 
 void  Player::AddLive()
 {
-	this->myLive += 100;
+	this->myHealth += 100;
 }
 
 int Player::GetCurrentRoom()
@@ -30,9 +30,9 @@ void Player::GoToNextRoom()
 
 bool Player::IsAlive()
 {
-	assert(myLive >= 0);
+	assert(myHealth >= 0);
 
-	if (myLive > 0)
+	if (myHealth > 0)
 	{
 		return true;
 	}
@@ -45,20 +45,20 @@ bool Player::IsAlive()
 void Player::LoseLife(int anAttackValue)
 {
 
-	if (myLive - anAttackValue >= 0)
+	if (myHealth - anAttackValue >= 0)
 	{
-		myLive -= anAttackValue;
+		myHealth -= anAttackValue;
 	}
 	else
 	{
-		myLive = 0;
+		myHealth = 0;
 	}
 
-	assert(myLive >= 0);
+	assert(myHealth >= 0);
 }
 
 Player::Player()
-	:myLive(100),myAttackValue(25),myCurrentRoom(0)
+	:myHealth(100),myAttackValue(25),myCurrentRoom(0)
 {
 
 }

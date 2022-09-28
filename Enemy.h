@@ -12,7 +12,7 @@ public:
 
 private:
 
-	int myLive;
+	int myHealth;
 	int myAttackValue;
 
 

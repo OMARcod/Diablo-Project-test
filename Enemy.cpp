@@ -2,9 +2,9 @@
 
 bool Enemy::IsAlive()
 {
-	assert( myLive >= 0);
+	assert( myHealth >= 0);
 
-	if (myLive > 0)
+	if (myHealth > 0)
 	{
 		return true;
 	}
@@ -17,16 +17,16 @@ bool Enemy::IsAlive()
 void Enemy::LoseLife(int anAttackValue)
 {
 
-	if (myLive - anAttackValue >= 0)
+	if (myHealth - anAttackValue >= 0)
 	{
-		myLive -= anAttackValue;
+		myHealth -= anAttackValue;
 	}
 	else
 	{
-		myLive = 0;
+		myHealth = 0;
 	}
 
-	assert(myLive >= 0);
+	assert(myHealth >= 0);
 }
 
 int Enemy::GetAttackValue()
@@ -36,10 +36,10 @@ int Enemy::GetAttackValue()
 
 int Enemy::GetLive()
 {
-	return this->myLive;
+	return this->myHealth;
 }
 
 Enemy::Enemy()
-	:myLive(25),myAttackValue(1)
+	:myHealth(25),myAttackValue(1)
 {	
 }
