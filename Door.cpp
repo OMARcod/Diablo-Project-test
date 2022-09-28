@@ -81,7 +81,7 @@ int Door::GetRoomNrToGoTo()
 int Door::GetNextDestnationRoom(int &aCurrentRoomIndex)
 {
 	int theNextRoom = GetRoomNrToGoTo();
-	//CheckIfClosed(theNextRoom); //Fix
+	CheckIfClosed(theNextRoom); //Fix
 
 	//check if the door is closed 
 	switch (theNextRoom)
@@ -110,14 +110,33 @@ int Door::GetNextDestnationRoom(int &aCurrentRoomIndex)
 	return aCurrentRoomIndex;
 }
 
-//bool Door::CheckIfClosed(int aNextRoomNr)
-//{
-//	for (size_t i = 0; i < myLockArray.size(); i++)
-//	{
-//
-//	}
-//	return false;
-//}
+bool Door::CheckIfClosed(int aNextRoomNr)
+{
+	switch (aNextRoomNr)
+	{
+	case static_cast<int>(Doors::FirstExit):
+		
+		break;
+	case static_cast<int>(Doors::SecondExit):
+		if (myLockArray[static_cast<int>(Doors::SecondExit)] == true)
+		{
+			//The door is closed
+		}
+		else
+		//go to the next room 
+
+		break;
+	case static_cast<int>(Doors::ThirdExit):
+		break;
+	case static_cast<int>(Doors::FourthExit):
+		break;
+
+	}
+
+	//return the next room
+	//if the door can't be open then return to the same room
+	return false;
+}
 
 //bool Door::IsDoorClosed(int aCurrentRoom)
 //{

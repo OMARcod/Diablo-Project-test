@@ -12,6 +12,10 @@ namespace SharedFunctions
 	void DorrAscii();
 	void EnemyAscii();
 	void DrawLine();
-	
+	void EnemyAsciiTow();
+	void EnemyAsciiThree();
+	void DrawThisString(std::string art, int nrOfTime);
+
+
 };
 

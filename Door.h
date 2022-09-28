@@ -29,7 +29,7 @@ private:
 
 	//bool IsDoorClosed(int aCurrentRoom);
 
-	//bool CheckIfClosed(int aNextRoomNr);
+	bool CheckIfClosed(int aNextRoomNr);
 
 	enum class Doors
 	{

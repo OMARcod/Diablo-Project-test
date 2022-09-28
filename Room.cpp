@@ -1,9 +1,9 @@
 #include "Room.h"
 
 Room::Room(Player&player)
-	:myPlayer(&player),myDoor(nullptr)
+	:myPlayer(&player),myDoor(nullptr),nrOfEnemies(3)
 {	
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
 		myEnemies.push_back(myEnemy);
 	}
@@ -24,7 +24,18 @@ void Room::AddDoor(Door* door)
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
 {
+	if (myEnemies.size() == 2)
+	{
+		SharedFunctions::EnemyAsciiTow();
+	}
+	else if (myEnemies.size() == 3)
+	{
+		SharedFunctions::EnemyAsciiThree();
+	}
+	else
+	{
 		SharedFunctions::EnemyAscii();
+	}
 		SharedFunctions::DrawLine();
 
 	for (int i = 0; i < myEnemies.size(); i++)
@@ -96,6 +107,7 @@ void Room::FightEnemies()
 		system("cls");
 		std::cout << "The Room Nr: " << myPlayer->GetCurrentRoom() << " is Empty!" << std::endl;
 		system("pause");
+		system("cls");
 
 	}
 	//??

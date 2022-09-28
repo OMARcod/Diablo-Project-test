@@ -19,6 +19,7 @@ private:
 	Player *myPlayer;
 	Door* myDoor;
 	
+	int nrOfEnemies;
 
 	void DisplayEnemiesWithNumbersAndHealth();
 	int SelectEnemyToAttack();
