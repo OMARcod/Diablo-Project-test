@@ -20,15 +20,24 @@ void Room::AddDoor(Door* door)
 	myDoor = door;  //need to be fixed
 }
 
+
+
 void Room::DisplayEnemiesWithNumbersAndHealth()
 {
 		SharedFunctions::EnemyAscii();
+		SharedFunctions::DrawLine();
+
 	for (int i = 0; i < myEnemies.size(); i++)
 	{
 		std::cout << "Enemy Nr: " << i << " || Enemy Hp: " <<
 			myEnemies[i].GetLive() << "\n";
 	}
+	SharedFunctions::DrawLine();
+
 	std::cout << "|| Player Hp: " << myPlayer->GetLive() << std::endl;
+
+	SharedFunctions::DrawLine();
+
 }
 
 bool Room::IsAllEnemAlive()

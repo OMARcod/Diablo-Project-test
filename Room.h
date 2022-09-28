@@ -12,6 +12,7 @@ public:
 	void EnterRoom();
 	void AddDoor(Door *door); //slide 26
 
+
 private:
 	std::vector<Enemy> myEnemies;
 	Enemy myEnemy;

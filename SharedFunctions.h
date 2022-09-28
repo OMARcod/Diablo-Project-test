@@ -11,6 +11,7 @@ namespace SharedFunctions
 	void DeathAscii();
 	void DorrAscii();
 	void EnemyAscii();
+	void DrawLine();
 	
 };
 

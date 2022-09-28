@@ -3,25 +3,33 @@
 #include "Room.h"
 #include "Player.h"
 
-Player player;
-Room room(player);
-Door doorRoom0(0, 1);
-Door doorRoom1(0, 2);
-Door doorRoom2(1, 3);
-Door doorRoom3(2, 4, 5);
-Door doorRoom4(3, 5, 0, 1);
-Door doorRoom5(4,6); //i think it will crash
 int main()
 {
-	std::vector<Room> rooms;
-	//make 2 rooms
-	rooms.push_back(room);
-	rooms.push_back(room);
-	rooms.push_back(room);
-	rooms.push_back(room);
-	rooms.push_back(room);
-	rooms.push_back(room);
+	const int null = -1;
 
+	Player player;
+	Room room(player);
+	Door doorRoom0(0, 1, null, null, true);
+	Door doorRoom1(0, 2);
+	Door doorRoom2(1, 3);
+	Door doorRoom3(2, 4, 5);
+	Door doorRoom4(3, 5, 0, 1);
+	Door doorRoom5(4,6); //i think it will crash
+	//
+
+	std::vector<Room> rooms;
+
+	//make 2 rooms
+
+	for (int i = 0; i < 6; i++)
+	{
+		rooms.push_back(room);
+		rooms.push_back(room);
+		rooms.push_back(room);
+		rooms.push_back(room);
+		rooms.push_back(room);
+		rooms.push_back(room);
+	}
 	//first room 
 	//have first exit 0
 	//have secund exit 1

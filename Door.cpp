@@ -1,24 +1,18 @@
 #include "Door.h"
 
-//-1 == false
-Door::Door(int aFirstExit, int aSecondExit) //2
-	:myFirstExit(aFirstExit), mySecondExit(aSecondExit), myThirdExit(-1), myFourthExit(-1)
-{
-		
-}
-Door::Door(int aFirstExit, int aSecondExit, int aThirdExit) //3
-	:myFirstExit(aFirstExit), mySecondExit(aSecondExit), myThirdExit(aThirdExit), myFourthExit(-1)
-
-{
-}
-Door::Door(int aFirstExit, int aSecondExit, int aThirdExit, int aFourthExit) //4
+Door::Door(int aFirstExit, int aSecondExit, int aThirdExit, int aFourthExit, bool IsLockedSecond, bool IsLockedThird, bool IsLockedFourth) //4
 	:myFirstExit(aFirstExit), mySecondExit(aSecondExit), myThirdExit(aThirdExit), myFourthExit(aFourthExit)
+	,myLokedIsClosed(false)
 {
+	myLockArray.push_back(IsLockedSecond);
+	myLockArray.push_back(IsLockedThird);
+	myLockArray.push_back(IsLockedFourth);
 }
 
 Door::~Door()
 {
 }
+
 
 int Door::EnterDoor(int aCurrentRoomIndex)
 {
@@ -41,22 +35,27 @@ int Door::EnterDoor(int aCurrentRoomIndex)
 	return aCurrentRoomIndex; //return the next door 
 }
 
+
 void Door::DisplayMenu()
 {
+	SharedFunctions::DrawLine();
 	std::cout << "0. Go Back --> to room Nr: " << myFirstExit << std::endl;
 	std::cout << "1. Next Room --> to room Nr: " << mySecondExit << std::endl;
 	
 	if (myThirdExit > -1)
 	{
-		std::cout << "2. Go To Room Nr: " << myThirdExit << std::endl;
+		std::cout << "2. Go To --> Room Nr: " << myThirdExit << std::endl;
 	}
 	if (myFourthExit > -1 && myThirdExit > -1)
 	{
-		std::cout << "3. Go To Room Nr: " << myFourthExit << std::endl;
+		std::cout << "3. Go To --> Room Nr: " << myFourthExit << std::endl;
 	}
+	SharedFunctions::DrawLine();
+
+
 }
 
-int Door::GetInput()
+int Door::GetRoomNrToGoTo()
 {
 	int inputGoToRoomNr = 0;
 
@@ -81,9 +80,11 @@ int Door::GetInput()
 
 int Door::GetNextDestnationRoom(int &aCurrentRoomIndex)
 {
+	int theNextRoom = GetRoomNrToGoTo();
+	//CheckIfClosed(theNextRoom); //Fix
 
 	//check if the door is closed 
-	switch (GetInput())
+	switch (theNextRoom)
 	{
 	case static_cast<int>(Doors::FirstExit):
 		if (aCurrentRoomIndex > 0) //so the player don't go back
@@ -108,6 +109,15 @@ int Door::GetNextDestnationRoom(int &aCurrentRoomIndex)
 
 	return aCurrentRoomIndex;
 }
+
+//bool Door::CheckIfClosed(int aNextRoomNr)
+//{
+//	for (size_t i = 0; i < myLockArray.size(); i++)
+//	{
+//
+//	}
+//	return false;
+//}
 
 //bool Door::IsDoorClosed(int aCurrentRoom)
 //{
