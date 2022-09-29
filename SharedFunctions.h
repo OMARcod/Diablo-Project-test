@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <iostream>
 #include <vector>
+#include <random>
 
 namespace SharedFunctions
 {
@@ -16,6 +17,7 @@ namespace SharedFunctions
 	void EnemyAsciiThree();
 	void DrawThisString(std::string art, int nrOfTime);
 
+	int GetRandomRandom(int aMin, int aMax);
 
 };
 
@@ -24,3 +26,6 @@ namespace SharedFunctions
 
 //// room 0//////------room1-------/////room2/////
 ////room3//////-----room4--------/////room5/////
+
+
+//make the doors lock as integers ...

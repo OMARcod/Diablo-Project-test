@@ -42,8 +42,10 @@ void Door::DisplayMenu()
 	std::cout << "0. Go Back --> to room Nr: " << myFirstExit << std::endl;
 	std::cout << "1. Next Room --> to room Nr: " << mySecondExit << std::endl;
 
+
 	if (myThirdExit > -1)
 	{
+		SharedFunctions::DrawLine();	
 		std::cout << "2. Go To --> Room Nr: " << myThirdExit << std::endl;
 	}
 	if (myFourthExit > -1 && myThirdExit > -1)
@@ -126,7 +128,7 @@ int Door::GetNextDestnationRoom(const int& aCurrentRoomIndex)
 			{
 				OpenDoorNr(doorNr);
 				roomIndex = ReturnTheRoom(doorNr, aCurrentRoomIndex);
-				std::cout << "Door nr " << doorNr << " is now open" << std::endl;
+				std::cout << "Door nr " << roomIndex << " is now open" << std::endl;
 			}
 			else
 			{

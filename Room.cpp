@@ -1,26 +1,73 @@
 #include "Room.h"
 
-Room::Room(Player&player)
-	:myPlayer(&player),myDoor(nullptr),nrOfEnemies(3)
-{	
-	for (size_t i = 0; i < nrOfEnemies; i++)
-	{
-		myEnemies.push_back(myEnemy);
-	}
+Room::Room(Player& player)
+	:myPlayer(&player), myDoor(nullptr)
+{
 }
 
 void Room::EnterRoom()
 {
-	FightEnemies();
+	//Menu ... Fight or escape 
+	system("cls");
+	int currentRoom = myPlayer->GetCurrentRoom();
+	std::cout << "You are in Room Nr: " << currentRoom << std::endl;
+	SharedFunctions::DorrAscii();
+	int input = 0;
+	if (myEnemies.size() > 0)
+	{
+		std::cout << "1. Fight The Enemies || total enimes = " << myEnemies.size() << std::endl;
+		std::cout << "2. Use the doors" << std::endl;
+		input = SharedFunctions::ReadInputInt(1, 2);
+		if (input == 1)
+		{
+			FightEnemies();
+		}
+	}
+	else
+	{
+		std::cout << "1. Use the doors" << std::endl;
+		input = SharedFunctions::ReadInputInt(1, 1);
+	}
+
+
+
+	//Case fight 
+
+
 	if (myPlayer->IsAlive())
 	{
+		system("cls");
 		UseDoor();
+	}
+	if (input == 2 || (input == 1 && myEnemies.size() > 0))
+	{
+		if (currentRoom != myPlayer->GetCurrentRoom())
+		{
+			system("cls");
+			int damage = static_cast<int>((myEnemies.size() * myEnemies[0].GetAttackValue()));
+			std::cout << "The Enimes have damaged you while you trying to escape the room" << std::endl;
+			std::cout << "Your healt before: ";
+			myPlayer->DisplayPlayreHpAndDefence();
+			myPlayer->LoseLife(damage);
+			SharedFunctions::DrawLine();
+			std::cout << "Total Damage : " << damage << std::endl;
+			std::cout << "Your healt after: ";
+			myPlayer->DisplayPlayreHpAndDefence();
+			system("pause");
+			myPlayer->ResetDefence();
+		}
 	}
 }
 
 void Room::AddDoor(Door* door)
 {
 	myDoor = door;  //need to be fixed
+
+	int nrOfEnemies = SharedFunctions::GetRandomRandom(1, 3);
+	for (int i = 0; i < nrOfEnemies; i++)
+	{
+		myEnemies.push_back(myEnemy);
+	}
 }
 
 
@@ -39,12 +86,12 @@ void Room::DisplayEnemiesWithNumbersAndHealth()
 	{
 		SharedFunctions::EnemyAscii();
 	}
-		SharedFunctions::DrawLine();
+	SharedFunctions::DrawLine();
 
 	for (int i = 0; i < myEnemies.size(); i++)
 	{
 		std::cout << "Enemy Nr: " << i << " || Enemy Hp: " <<
-			myEnemies[i].GetHealth()  << " || Attack Value: " << myEnemies[i].GetAttackValue() << "\n";
+			myEnemies[i].GetHealth() << " || Attack Value: " << myEnemies[i].GetAttackValue() << "\n";
 	}
 	SharedFunctions::DrawLine();
 
@@ -84,9 +131,6 @@ void Room::DeleteEnemyIfDead()
 void Room::FightEnemies()
 {
 	system("cls");
-	std::cout << "You are in Room Nr: " << myPlayer->GetCurrentRoom() << std::endl;
-	SharedFunctions::DorrAscii();
-	system("pause");
 	while (myEnemies.size() > 0 && myPlayer->IsAlive() == true)
 	{
 		system("cls");

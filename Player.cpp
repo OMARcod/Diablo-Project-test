@@ -53,6 +53,10 @@ void Player::LoseLife(int anAttackValue)
 			anAttackValue -= myDefense;
 			myDefense -= tempAttack;
 		}
+		if (myDefense < 0)
+		{
+			myDefense = 0;
+		}
 
 		if (anAttackValue > 0)
 		{
@@ -91,6 +95,12 @@ void Player::DisplayPlayreCharacteristics()
 
 	std::cout << "Defence : " << this->myDefense 
 		<< " || Attack value: " << this->myAttackValue << std::endl;
+}
+
+void Player::DisplayPlayreHpAndDefence()
+{
+	std::cout << "Player Hp : " << this->GetHealth() << " || Defence : " << this->myDefense
+		<< std::endl;
 }
 
 void Player::ResetDefence()

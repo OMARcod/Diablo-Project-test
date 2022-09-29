@@ -16,6 +16,7 @@ public:
 	void SetCurrentRoom(int aCurrentRoom);
 
 	void DisplayPlayreCharacteristics();
+	void DisplayPlayreHpAndDefence();
 
 
 	void ResetDefence();
@@ -49,3 +50,6 @@ private:
 
 
 //the attack from the enmie should be less with defence 
+
+//when is done with room 2 then the strength will ve 40 which will make him
+//able to open the magic door at room 1

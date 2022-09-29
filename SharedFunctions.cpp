@@ -55,6 +55,17 @@ int SharedFunctions::ReadInputInt(int aMinNr, int aMaxNr)
 	return inputNr;
 }
 
+
+
+int SharedFunctions::GetRandomRandom(int aMin, int aMax)
+{
+	static std::random_device seed;
+	static std::mt19937 rndEngine(seed());
+	std::uniform_int_distribution<int> rndDist(aMin, aMax);
+	return rndDist(rndEngine);
+}
+
+
 void SharedFunctions::DeathAscii()
 {
 	{
@@ -93,26 +104,6 @@ void SharedFunctions::DorrAscii()
 
 void SharedFunctions::EnemyAscii()
 {
-//	std::cout << R"(
-//  ,/         \.
-// ((           ))
-//  \`.       ,'/
-//   )')     (`(
-// ,'`/       \,`.
-//(`-(         )-')
-// \-'\,-'"`-./`-/
-//  \-')     (`-/
-//  /`'       `'\
-// (  _       _  )
-// | ( \     / ) |
-// |  `.\   /,'  |
-// |    `\ /'    |
-// (             )
-//  \           /
-//   \         /
-//    `.     ,'
-//      `-.-'
-//)" ;
 	std::cout << R"(
   ,^.
   |||
@@ -177,7 +168,7 @@ void SharedFunctions::EnemyAsciiThree()
 
 void SharedFunctions::DrawThisString(std::string art, int nrOfTime)
 {
-	for (size_t i = 0; i < nrOfTime; i++)
+	for (int i = 0; i < nrOfTime; i++)
 	{
 		std::cout << art << " ";
 	}
