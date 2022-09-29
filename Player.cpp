@@ -4,10 +4,10 @@
 
 int Player::GetAttackValue()
 {
-    return this->myAttackValue;
+	return this->myAttackValue;
 }
 
-int Player::GetLive()
+int Player::GetHealth()
 {
 	return this->myHealth;
 }
@@ -47,7 +47,17 @@ void Player::LoseLife(int anAttackValue)
 
 	if (myHealth - anAttackValue >= 0)
 	{
-		myHealth -= anAttackValue;
+		int tempAttack = anAttackValue;
+		if (myDefense > 0)
+		{
+			anAttackValue -= myDefense;
+			myDefense -= tempAttack;
+		}
+
+		if (anAttackValue > 0)
+		{
+			myHealth -= anAttackValue;
+		}
 	}
 	else
 	{
@@ -58,7 +68,13 @@ void Player::LoseLife(int anAttackValue)
 }
 
 Player::Player()
-	:myHealth(100),myAttackValue(25),myCurrentRoom(0)
+	:myCurrentRoom(0)
+	, myStrength(5), myAgility(5), myPhysics(5)
+	, myDefense(myPhysics + (myAgility * 5)) //30
+	, myAttackValue(myStrength* myAgility) //25
+	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10)) //105
+	, myCarryingCapacity(myStrength + myAgility) //10  
+	, myOriginalDefense(myDefense)
 {
 
 }
@@ -66,4 +82,18 @@ Player::Player()
 void Player::SetCurrentRoom(int aCurrentRoom) //??
 {
 	this->myCurrentRoom = aCurrentRoom;
+}
+
+void Player::DisplayPlayreCharacteristics()
+{
+	std::cout << "Player Hp : " << this->GetHealth() << " || Strength: " << this->myStrength
+		<< " || Agility: " << myAgility << " || Physics: " << this->myPhysics << std::endl;
+
+	std::cout << "Defence : " << this->myDefense 
+		<< " || Attack value: " << this->myAttackValue << std::endl;
+}
+
+void Player::ResetDefence()
+{
+	this->myDefense = myOriginalDefense;
 }

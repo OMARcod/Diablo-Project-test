@@ -9,7 +9,7 @@ int main()
 
 	Player player;
 	Room room(player);
-	Door doorRoom0(0, 1, null, null, true);
+	Door doorRoom0(0, 1, 5, null, true);
 	Door doorRoom1(0, 2);
 	Door doorRoom2(1, 3);
 	Door doorRoom3(2, 4, 5);
@@ -23,11 +23,6 @@ int main()
 
 	for (int i = 0; i < 6; i++)
 	{
-		rooms.push_back(room);
-		rooms.push_back(room);
-		rooms.push_back(room);
-		rooms.push_back(room);
-		rooms.push_back(room);
 		rooms.push_back(room);
 	}
 	//first room 

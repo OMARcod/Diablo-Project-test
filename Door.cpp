@@ -2,7 +2,7 @@
 
 Door::Door(int aFirstExit, int aSecondExit, int aThirdExit, int aFourthExit, bool IsLockedSecond, bool IsLockedThird, bool IsLockedFourth) //4
 	:myFirstExit(aFirstExit), mySecondExit(aSecondExit), myThirdExit(aThirdExit), myFourthExit(aFourthExit)
-	,myLokedIsClosed(false)
+	, myLokedIsClosed(false),myPlayerStringth(0)
 {
 	myLockArray.push_back(IsLockedSecond);
 	myLockArray.push_back(IsLockedThird);
@@ -41,7 +41,7 @@ void Door::DisplayMenu()
 	SharedFunctions::DrawLine();
 	std::cout << "0. Go Back --> to room Nr: " << myFirstExit << std::endl;
 	std::cout << "1. Next Room --> to room Nr: " << mySecondExit << std::endl;
-	
+
 	if (myThirdExit > -1)
 	{
 		std::cout << "2. Go To --> Room Nr: " << myThirdExit << std::endl;
@@ -55,7 +55,7 @@ void Door::DisplayMenu()
 
 }
 
-int Door::GetRoomNrToGoTo()
+int Door::GetUserInputRoomNrToGoTo()
 {
 	int inputGoToRoomNr = 0;
 
@@ -78,64 +78,128 @@ int Door::GetRoomNrToGoTo()
 	return inputGoToRoomNr;
 }
 
-int Door::GetNextDestnationRoom(int &aCurrentRoomIndex)
+int Door::ReturnTheRoom(int aDoorNr,const int & aCurrentRoomIndex)
 {
-	int theNextRoom = GetRoomNrToGoTo();
-	CheckIfClosed(theNextRoom); //Fix
-
-	//check if the door is closed 
-	switch (theNextRoom)
+	int roomIndex = aCurrentRoomIndex;
+	switch (aDoorNr)
 	{
 	case static_cast<int>(Doors::FirstExit):
-		if (aCurrentRoomIndex > 0) //so the player don't go back
+		if (roomIndex > 0) //so the player don't go back
 		{
-			aCurrentRoomIndex = myFirstExit; //check so when you are in room 0 to not go back
+			roomIndex = myFirstExit; //check so when you are in room 0 to not go back
 		}
 		break;
 	case static_cast<int>(Doors::SecondExit):
 		//how to check if im in the last room
-		//mySecond = mySecondExit;
-		aCurrentRoomIndex = mySecondExit; //check so when you are in last index to not add further
+
+		roomIndex = mySecondExit; //check so when you are in last index to not add further
 		break;
 
 	case static_cast<int>(Doors::ThirdExit):
-		aCurrentRoomIndex = myThirdExit; 
+		roomIndex = myThirdExit;
 		break;
 	case static_cast<int>(Doors::FourthExit):
-		aCurrentRoomIndex = myFourthExit; 
+		roomIndex = myFourthExit;
 		break;
-
 	}
 
-	return aCurrentRoomIndex;
+	return roomIndex;
 }
 
-bool Door::CheckIfClosed(int aNextRoomNr)
+int Door::GetNextDestnationRoom(const int& aCurrentRoomIndex)
 {
-	switch (aNextRoomNr)
+	int doorNr = GetUserInputRoomNrToGoTo();
+	int roomIndex = aCurrentRoomIndex;
+
+	if (CheckIfClosed(doorNr)) //if door is closed 
+	{
+		//open the door with agility
+		//open the door with stringth
+
+		std::cout << "The Door is Closed :(" << std::endl;
+		std::cout << "0. break the door" << std::endl;
+		std::cout << "1. return back" << std::endl;
+		int input = SharedFunctions::ReadInputInt(0, 1);
+		if (input == 0)
+		{
+			if (CheckIfPlayerIsStrongEnough())
+			{
+				OpenDoorNr(doorNr);
+				roomIndex = ReturnTheRoom(doorNr, aCurrentRoomIndex);
+				std::cout << "Door nr " << doorNr << " is now open" << std::endl;
+			}
+			else
+			{
+				std::cout << "You are not strong enough to open the door" << std::endl;
+			}
+		}
+		system("pause");
+	}
+	else
+	{
+		roomIndex = ReturnTheRoom(doorNr, aCurrentRoomIndex);
+	}
+	//check if the door is closed 
+	
+	return roomIndex; 
+}
+
+void Door::OpenDoorNr(int aDoorNr)
+{
+	assert(myLockArray[aDoorNr - 1] == true);
+	assert((aDoorNr - 1) >= 0);
+	myLockArray[aDoorNr - 1] = false;
+}
+
+void Door::SetMyPlayerStringth(int aStringth)
+{
+	myPlayerStringth = aStringth;
+}
+
+bool Door::CheckIfPlayerIsStrongEnough() // fix this
+{
+	//fix so that when you add door stringth ..
+	//if player stringth > door stringth 
+	//increace player stringth when defeating enimes
+
+	if (myPlayerStringth > 15) //can break the door 
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Door::CheckIfClosed(int anExitNr)
+{
+	switch (anExitNr)
 	{
 	case static_cast<int>(Doors::FirstExit):
-		
+		return false;
 		break;
-	case static_cast<int>(Doors::SecondExit):
-		if (myLockArray[static_cast<int>(Doors::SecondExit)] == true)
-		{
-			//The door is closed
-		}
-		else
-		//go to the next room 
 
+	case static_cast<int>(Doors::SecondExit):
+		if (myLockArray[0] == true)
+			return true;
+		else
+			return false;
 		break;
 	case static_cast<int>(Doors::ThirdExit):
+		if (myLockArray[1] == true)
+			return true;
+		else
+			return false;
 		break;
 	case static_cast<int>(Doors::FourthExit):
+		if (myLockArray[2] == true)
+			return true;
+		else
+			return false;
 		break;
-
 	}
 
 	//return the next room
 	//if the door can't be open then return to the same room
-	return false;
+	return true;
 }
 
 //bool Door::IsDoorClosed(int aCurrentRoom)

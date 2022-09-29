@@ -10,8 +10,14 @@ public:
 		,bool IsLockedFourth = false); //New
 	~Door();
 	int EnterDoor(int aCurrentRoomIndex);
+	void SetMyPlayerStringth(int aStringth);
 
-	
+	//i want a door strength 
+	//to see if the player is strong enough to open the door;
+
+	//instade of is locked 
+	//0  = open 
+	//nr > 0 == closed and how much strength
 private:
 	
 	bool myLokedIsClosed;
@@ -24,10 +30,14 @@ private:
 	int myFourthExit; //new
 
 	void DisplayMenu();
-	int GetRoomNrToGoTo();
-	int GetNextDestnationRoom(int& aCurrentRoomIndex);
+	int GetUserInputRoomNrToGoTo();
+	int ReturnTheRoom(int aDoorNr,const int &aCurrentRoomIndex);
+	int GetNextDestnationRoom(const int& aCurrentRoomIndex);
 
-	//bool IsDoorClosed(int aCurrentRoom);
+	void OpenDoorNr(int aDoorNr);
+
+	int myPlayerStringth; //set the player stringth from room class
+	bool CheckIfPlayerIsStrongEnough();
 
 	bool CheckIfClosed(int aNextRoomNr);
 

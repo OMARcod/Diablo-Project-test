@@ -3,32 +3,41 @@
 class Player
 {
 public:
+	Player();
+
+
 	bool IsAlive();
 	void LoseLife(int anAttackValue);
 	int GetAttackValue();
-	int GetLive();
+	int GetHealth();
 	void AddLive();
 	int GetCurrentRoom();
-	//need to be fixed
 	void GoToNextRoom();
 	void SetCurrentRoom(int aCurrentRoom);
 
+	void DisplayPlayreCharacteristics();
 
-	Player();
+
+	void ResetDefence();
 
 private:
 
 
+
+
 	int myCurrentRoom;
 
-	int myHealth;
+	int myStrength; //new
+	int myAgility; //new
+	int myPhysics; //new
+	int myDefense;//new
+
+
 	int myAttackValue;
+	int myHealth;
 	int myCarryingCapacity; //new
 
-	int Strength; //new
-	int Agility; //new
-	int Defense;//new
-
+	const int myOriginalDefense;
 };
 
 //

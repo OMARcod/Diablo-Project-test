@@ -12,7 +12,10 @@ Room::Room(Player&player)
 void Room::EnterRoom()
 {
 	FightEnemies();
-	UseDoor();
+	if (myPlayer->IsAlive())
+	{
+		UseDoor();
+	}
 }
 
 void Room::AddDoor(Door* door)
@@ -41,11 +44,11 @@ void Room::DisplayEnemiesWithNumbersAndHealth()
 	for (int i = 0; i < myEnemies.size(); i++)
 	{
 		std::cout << "Enemy Nr: " << i << " || Enemy Hp: " <<
-			myEnemies[i].GetLive() << "\n";
+			myEnemies[i].GetHealth()  << " || Attack Value: " << myEnemies[i].GetAttackValue() << "\n";
 	}
 	SharedFunctions::DrawLine();
 
-	std::cout << "|| Player Hp: " << myPlayer->GetLive() << std::endl;
+	myPlayer->DisplayPlayreCharacteristics();
 
 	SharedFunctions::DrawLine();
 
@@ -108,8 +111,9 @@ void Room::FightEnemies()
 		std::cout << "The Room Nr: " << myPlayer->GetCurrentRoom() << " is Empty!" << std::endl;
 		system("pause");
 		system("cls");
-
 	}
+
+	myPlayer->ResetDefence(); //reset defence value 
 	//??
 }
 
@@ -117,7 +121,10 @@ void Room::UseDoor() //go to next room
 {
 	//make the player chose where to go
 	//in Add door we have a pointer to the current door 
-
+	if (myPlayer->IsAlive()) //store the player attack value in the door class 
+	{
+		myDoor->SetMyPlayerStringth(myPlayer->GetAttackValue()); // need to be fixed .. get strignth
+	}
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
 
@@ -133,7 +140,6 @@ int Room::SelectEnemyToAttack()
 	{
 		std::cout << "\tNr: " << i << std::endl;
 	}
-
 	selectedEnemy = SharedFunctions::ReadInputInt(0, static_cast<int>(myEnemies.size() - 1));
 	return selectedEnemy;
 }

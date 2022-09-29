@@ -34,12 +34,12 @@ int Enemy::GetAttackValue()
 	return this->myAttackValue;
 }
 
-int Enemy::GetLive()
+int Enemy::GetHealth()
 {
 	return this->myHealth;
 }
 
 Enemy::Enemy()
-	:myHealth(25),myAttackValue(1)
+	:myHealth(25),myAttackValue(15)
 {	
 }

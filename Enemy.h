@@ -6,7 +6,7 @@ public:
 	bool IsAlive();
 	void LoseLife(int anAttackValue);
 	int GetAttackValue();
-	int GetLive();
+	int GetHealth();
 
 	Enemy();
 
@@ -18,3 +18,4 @@ private:
 
 };
 
+//enemy should know if the 
