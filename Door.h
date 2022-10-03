@@ -13,7 +13,7 @@ public:
 
 
 	int EnterDoor(int aCurrentRoomIndex);
-	void SetMyPlayerStringth(int aStringth);
+	void StoreThePlayerStringth(int aStringth);
 
 
 private:

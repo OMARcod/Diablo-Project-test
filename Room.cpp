@@ -15,23 +15,8 @@ void Room::EnterRoom()
 	int currentRoom = myPlayer->GetCurrentRoom();
 	std::cout << "You are in Room Nr: " << currentRoom << std::endl;
 	SharedFunctions::DorrAscii();
-	int input = 0;
-	if (myEnemies.size() > 0)
-	{
-		std::cout << "1. Fight The Enemies || total enimes = " << myEnemies.size() << std::endl;
-		std::cout << "2. Use the doors" << std::endl;
-		input = SharedFunctions::ReadInputInt(1, 2);
-		if (input == 1)
-		{
-			FightEnemies();
-		}
-	}
-	else
-	{
-		std::cout << "1. Use the doors" << std::endl;
-		input = SharedFunctions::ReadInputInt(1, 1);
-	}
-
+	int input = DispalyOptionFightOrDoor();
+	
 	if (myPlayer->IsAlive())
 	{
 		system("cls");
@@ -159,6 +144,27 @@ void Room::DisplayAfterFightInfo(int oldEnemySize)
 	system("pause");
 }
 
+int Room::DispalyOptionFightOrDoor()
+{
+	int input = 0;
+	if (myEnemies.size() > 0)
+	{
+		std::cout << "1. Fight The Enemies || total enimes = " << myEnemies.size() << std::endl;
+		std::cout << "2. Use the doors" << std::endl;
+		input = SharedFunctions::ReadInputInt(1, 2);
+		if (input == 1)
+		{
+			FightEnemies();
+		}
+	}
+	else
+	{
+		std::cout << "1. Use the doors" << std::endl;
+		input = SharedFunctions::ReadInputInt(1, 1);
+	}
+	return input;
+}
+
 void Room::FightEnemies()
 {
 	system("cls");
@@ -202,7 +208,7 @@ void Room::UseDoor()
 {
 	if (myPlayer->IsAlive())
 	{
-		myDoor->SetMyPlayerStringth(myPlayer->GetAttackValue());
+		myDoor->StoreThePlayerStringth(myPlayer->GetAttackValue());
 	}
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }

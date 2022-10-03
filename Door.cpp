@@ -31,7 +31,7 @@ int Door::EnterDoor(int aCurrentRoomIndex)
 	return aCurrentRoomIndex; 
 }
 
-void Door::SetMyPlayerStringth(int aStringth)
+void Door::StoreThePlayerStringth(int aStringth)
 {
 	myPlayerStringth = aStringth;
 }
@@ -150,6 +150,10 @@ int Door::GetNextDestnationRoom(const int& aCurrentRoomIndex)
 			{
 				std::cout << "You are not strong enough to open the door" << std::endl;
 			}
+		}
+		else //New
+		{
+			roomIndex = aCurrentRoomIndex;
 		}
 		system("pause");
 	}

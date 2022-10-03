@@ -28,7 +28,7 @@ private:
 	bool IsAllEnemAlive();
 	void DeleteEnemyIfDead(); 
 	void DisplayAfterFightInfo(int oldEnemySize);
-
+	int DispalyOptionFightOrDoor();
 
 	void FightEnemies();
 	void UseDoor();
