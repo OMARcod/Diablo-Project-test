@@ -5,9 +5,12 @@ Room::Room(Player& player)
 {
 }
 
+Room::~Room()
+{
+}
+
 void Room::EnterRoom()
 {
-	//Menu ... Fight or escape 
 	system("cls");
 	int currentRoom = myPlayer->GetCurrentRoom();
 	std::cout << "You are in Room Nr: " << currentRoom << std::endl;
@@ -28,11 +31,6 @@ void Room::EnterRoom()
 		std::cout << "1. Use the doors" << std::endl;
 		input = SharedFunctions::ReadInputInt(1, 1);
 	}
-
-
-
-	//Case fight 
-
 
 	if (myPlayer->IsAlive())
 	{
@@ -61,16 +59,14 @@ void Room::EnterRoom()
 
 void Room::AddDoor(Door* door)
 {
-	myDoor = door;  //need to be fixed
+	myDoor = door;
 
-	int nrOfEnemies = SharedFunctions::GetRandomRandom(1, 3);
+	int nrOfEnemies = SharedFunctions::GetRandomRandom(2, 3);
 	for (int i = 0; i < nrOfEnemies; i++)
 	{
 		myEnemies.push_back(myEnemy);
 	}
 }
-
-
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
 {
@@ -101,6 +97,20 @@ void Room::DisplayEnemiesWithNumbersAndHealth()
 
 }
 
+int Room::SelectEnemyToAttack()
+{
+	assert(myEnemies.size() > 0);
+	int selectedEnemy = 0;
+	std::cout << "There is " << myEnemies.size() << " enemies!!" << std::endl;
+	std::cout << "Attack Enemy -> " << std::endl;
+	for (int i = 0; i < myEnemies.size(); i++)
+	{
+		std::cout << "\tNr: " << i << std::endl;
+	}
+	selectedEnemy = SharedFunctions::ReadInputInt(0, static_cast<int>(myEnemies.size() - 1));
+	return selectedEnemy;
+}
+
 bool Room::IsAllEnemAlive()
 {
 	for (int i = 0; i < myEnemies.size(); i++)
@@ -115,9 +125,7 @@ bool Room::IsAllEnemAlive()
 
 void Room::DeleteEnemyIfDead()
 {
-	//if enemy is dead ... delete from array
-	//but the last element in that place
-	//delte the last element 
+
 	for (int i = 0; i < myEnemies.size(); i++)
 	{
 		if (myEnemies[i].IsAlive() == false)
@@ -126,6 +134,29 @@ void Room::DeleteEnemyIfDead()
 			myEnemies.pop_back();
 		}
 	}
+}
+
+void Room::DisplayAfterFightInfo(int oldEnemySize)
+{
+
+	std::cout << "You Killed " << oldEnemySize - myEnemies.size() << std::endl;
+	if (myEnemies.size() > 0)
+	{
+		std::cout << myEnemies.size() << " Enemy has attacked you ||";
+		std::cout << "Total Damage = " << (myEnemies.size() * myEnemies[0].GetAttackValue()) << std::endl;
+	}
+	else
+	{
+		std::cout << "All enemies are dead!" << std::endl;
+		std::cout << "Total Damage = 0" << std::endl;
+
+
+		std::cout << "\n\n You got 50 Hp extra" << std::endl;
+		myPlayer->AddLive();
+
+	}
+
+	system("pause");
 }
 
 void Room::FightEnemies()
@@ -147,43 +178,32 @@ void Room::FightEnemies()
 				myPlayer->LoseLife(myEnemies[enemyIndex].GetAttackValue());
 			}
 		}
+		int oldSize = static_cast<int>(myEnemies.size());
 		DeleteEnemyIfDead();
+		DisplayAfterFightInfo(oldSize);
 	}
+	/*system("cls");
+	DisplayEnemiesWithNumbersAndHealth();
+	system("pause");*/
+
 	if (myEnemies.size() <= 0)
 	{
 		system("cls");
 		std::cout << "The Room Nr: " << myPlayer->GetCurrentRoom() << " is Empty!" << std::endl;
+		SharedFunctions::DrawLine();
 		system("pause");
 		system("cls");
 	}
 
-	myPlayer->ResetDefence(); //reset defence value 
-	//??
+	myPlayer->ResetDefence();
 }
 
-void Room::UseDoor() //go to next room
+void Room::UseDoor()
 {
-	//make the player chose where to go
-	//in Add door we have a pointer to the current door 
-	if (myPlayer->IsAlive()) //store the player attack value in the door class 
+	if (myPlayer->IsAlive())
 	{
-		myDoor->SetMyPlayerStringth(myPlayer->GetAttackValue()); // need to be fixed .. get strignth
+		myDoor->SetMyPlayerStringth(myPlayer->GetAttackValue());
 	}
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
 
-
-
-int Room::SelectEnemyToAttack()
-{
-	assert(myEnemies.size() > 0);
-	int selectedEnemy = 0;
-	std::cout << "There is " << myEnemies.size() << " enemies!!" << std::endl;
-	std::cout << "Attack Enemy -> " << std::endl;
-	for (int i = 0; i < myEnemies.size(); i++)
-	{
-		std::cout << "\tNr: " << i << std::endl;
-	}
-	selectedEnemy = SharedFunctions::ReadInputInt(0, static_cast<int>(myEnemies.size() - 1));
-	return selectedEnemy;
-}

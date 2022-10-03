@@ -1,31 +1,19 @@
 #include "Player.h"
 
-
-
-int Player::GetAttackValue()
+Player::Player()
+	:myCurrentRoom(0)
+	, myStrength(5), myAgility(5), myPhysics(5)
+	, myDefense(myPhysics + (myAgility * 5))
+	, myAttackValue(myStrength* myAgility)
+	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10))
+	, myCarryingCapacity(myStrength + myAgility)
+	, myOriginalDefense(myDefense)
 {
-	return this->myAttackValue;
+
 }
 
-int Player::GetHealth()
+Player::~Player()
 {
-	return this->myHealth;
-}
-
-void  Player::AddLive()
-{
-	this->myHealth += 100;
-}
-
-int Player::GetCurrentRoom()
-{
-	return this->myCurrentRoom;
-}
-
-
-void Player::GoToNextRoom()
-{
-	this->myCurrentRoom++;
 }
 
 bool Player::IsAlive()
@@ -71,19 +59,27 @@ void Player::LoseLife(int anAttackValue)
 	assert(myHealth >= 0);
 }
 
-Player::Player()
-	:myCurrentRoom(0)
-	, myStrength(5), myAgility(5), myPhysics(5)
-	, myDefense(myPhysics + (myAgility * 5)) //30
-	, myAttackValue(myStrength* myAgility) //25
-	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10)) //105
-	, myCarryingCapacity(myStrength + myAgility) //10  
-	, myOriginalDefense(myDefense)
+int Player::GetAttackValue()
 {
-
+	return this->myAttackValue;
 }
 
-void Player::SetCurrentRoom(int aCurrentRoom) //??
+int Player::GetHealth()
+{
+	return this->myHealth;
+}
+
+void  Player::AddLive()
+{
+	this->myHealth += 50;
+}
+
+int Player::GetCurrentRoom()
+{
+	return this->myCurrentRoom;
+}
+
+void Player::SetCurrentRoom(int aCurrentRoom) 
 {
 	this->myCurrentRoom = aCurrentRoom;
 }

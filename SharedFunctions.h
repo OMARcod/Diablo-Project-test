@@ -16,16 +16,9 @@ namespace SharedFunctions
 	void EnemyAsciiTow();
 	void EnemyAsciiThree();
 	void DrawThisString(std::string art, int nrOfTime);
+	void DrawWelcomeAscii();
 
 	int GetRandomRandom(int aMin, int aMax);
 
 };
 
-//add room map  
-//after you finish
-
-//// room 0//////------room1-------/////room2/////
-////room3//////-----room4--------/////room5/////
-
-
-//make the doors lock as integers ...

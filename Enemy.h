@@ -3,12 +3,15 @@
 class Enemy
 {
 public:
+	Enemy();
+	~Enemy();
+
 	bool IsAlive();
-	void LoseLife(int anAttackValue);
+
 	int GetAttackValue();
 	int GetHealth();
 
-	Enemy();
+	void LoseLife(int anAttackValue);
 
 private:
 
@@ -17,5 +20,3 @@ private:
 
 
 };
-
-//enemy should know if the 

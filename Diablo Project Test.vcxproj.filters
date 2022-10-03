@@ -21,7 +21,7 @@
     <ClCompile Include="SharedFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Diablo Project Test.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files\Game Scripts</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">

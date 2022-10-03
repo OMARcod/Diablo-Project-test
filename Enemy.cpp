@@ -1,4 +1,12 @@
 #include "Enemy.h"
+Enemy::Enemy()
+	:myHealth(25),myAttackValue(35)
+{	
+}
+
+Enemy::~Enemy()
+{
+}
 
 bool Enemy::IsAlive()
 {
@@ -13,6 +21,17 @@ bool Enemy::IsAlive()
 		return false;
 	}
 }
+
+int Enemy::GetHealth()
+{
+	return this->myHealth;
+}
+
+int Enemy::GetAttackValue()
+{
+	return this->myAttackValue;
+}
+
 
 void Enemy::LoseLife(int anAttackValue)
 {
@@ -29,17 +48,3 @@ void Enemy::LoseLife(int anAttackValue)
 	assert(myHealth >= 0);
 }
 
-int Enemy::GetAttackValue()
-{
-	return this->myAttackValue;
-}
-
-int Enemy::GetHealth()
-{
-	return this->myHealth;
-}
-
-Enemy::Enemy()
-	:myHealth(25),myAttackValue(15)
-{	
-}
