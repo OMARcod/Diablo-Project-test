@@ -7,16 +7,12 @@ public:
 	~Enemy();
 
 	bool IsAlive();
-
 	int GetAttackValue();
 	int GetHealth();
-
 	void LoseLife(int anAttackValue);
 
 private:
 
 	int myHealth;
 	int myAttackValue;
-
-
 };
