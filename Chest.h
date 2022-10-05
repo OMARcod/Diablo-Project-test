@@ -1,7 +1,6 @@
 #pragma once
-#include "Items.h"
 #include "SharedFunctions.h"
-
+#include "Items.h"
 class Chest
 {
 public:
@@ -11,21 +10,18 @@ public:
 
 	const static int myNoItem = -1;
 
-	Chest(SharedFunctions::MyItems itemID,bool isLocked); //need to be fixed 
+	Chest(int itemID,bool isLocked); //need to be fixed 
 
-	int OpenChest();
-
-	void AddItem(Items *myItems); //take the item
+	int EnterChest();
+	bool isChestEmpty();
 	
 private:
-	Items myItem;
 	
-
-	void CheckItem(const SharedFunctions::MyItems itemID);
-	bool isItemUsed();
-	SharedFunctions::MyItems GetItemID();
-
+	Items myItem;
 	bool myLockIsClosed;
+	int myItemID;
+	bool myChestIsEmpty;
+
 	//bool CheckIfPlayerIsStrongEnough();
 
 };

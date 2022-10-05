@@ -1,5 +1,6 @@
 #pragma once
 #include "SharedFunctions.h"
+#include "Items.h"
 class Player
 {
 public:
@@ -21,11 +22,13 @@ public:
 
 	void AddItem(int itmeID); //this function take the item
 	//id and make the calculation
+	bool isCapacityNotFull();
+	void DisplayInventory();
 
 private:
 
 	int myCurrentRoom;
-
+	
 	int myStrength; 
 	int myAgility; 
 	int myPhysics; 
@@ -34,7 +37,11 @@ private:
 
 	int myAttackValue;
 	int myHealth;
-	int myCarryingCapacity; 
+	int myCarryingCapacity; // myCarryingCapacity(myStrength + myAgility) //change it 
 
 	const int myOriginalDefense;
+
+	//new 
+	std::vector<Items> myItemsVector;
+	Items myItem;
 };

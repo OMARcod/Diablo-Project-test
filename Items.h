@@ -7,12 +7,15 @@ public:
 	~Items();
 
 	
-	void SetItems(const SharedFunctions::MyItems itemType);
+	void SetType(int itemType);
 
 	std::string GetItmeName(int itemID);
 	std::string GetItmeInfo(int itemID);
 
+	std::string GetItmeName();
+	std::string GetItmeInfo();
 private:
+	int myItmeID;
 
 };
 

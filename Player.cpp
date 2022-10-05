@@ -6,7 +6,7 @@ Player::Player()
 	, myDefense(myPhysics + (myAgility * 5))
 	, myAttackValue(myStrength* myAgility)
 	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10))
-	, myCarryingCapacity(myStrength + myAgility)
+	, myCarryingCapacity(2)
 	, myOriginalDefense(myDefense)
 {
 
@@ -86,6 +86,9 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 
 void Player::AddItem(int itmeID)
 {
+	myItemsVector.push_back(myItem);
+	myItem.SetType(itmeID);
+
 	switch (itmeID)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
@@ -106,6 +109,13 @@ void Player::AddItem(int itmeID)
 	}
 }
 
+bool Player::isCapacityNotFull()
+{
+	return myItemsVector.size() < myCarryingCapacity;
+}
+
+
+
 void Player::DisplayPlayreCharacteristics()
 {
 	std::cout << "Player Hp : " << this->GetHealth() << " || Strength: " << this->myStrength
@@ -124,4 +134,27 @@ void Player::DisplayPlayreHpAndDefence()
 void Player::ResetDefence()
 {
 	this->myDefense = myOriginalDefense;
+}
+
+
+
+
+void Player::DisplayInventory()
+{
+	SharedFunctions::DrawLine();
+	std::cout << "----INVINTORY------" << std::endl;
+	if (myItemsVector.size() > 0)
+	{
+		for (int i = 0; i < myItemsVector.size(); i++)
+		{
+			std::cout << myItemsVector[i].GetItmeName();
+			std::cout << "  -->  " << myItemsVector[i].GetItmeInfo() << std::endl;
+			SharedFunctions::DrawLine();
+		}
+	}
+	else
+	{
+		std::cout << " EMPTY!!!  " << std::endl;
+	}
+	SharedFunctions::DrawLine();
 }

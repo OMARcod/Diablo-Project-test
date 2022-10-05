@@ -2,6 +2,7 @@
 #include <vector>
 #include "Room.h"
 #include "Player.h"
+#include "Chest.h"
 class Game
 {
 public:
@@ -24,6 +25,26 @@ private:
 	Door doorRoom4;
 	Door doorRoom5;
 
+	Chest normalChest;
+	Chest magicCheest;
+
+
 	std::vector<Room> rooms;
 };
 
+/*
+		 __________
+		/\____;;___\
+	   | /         /
+	   `. ())oo() .
+		|\(%()*^^()^\
+	   %| |-%-------|
+	  % \ | %  ))   |
+	  %  \|%________|
+*/
+
+
+//todo 
+//fix the witght 
+//fix the magic thing 
+//fix the chset is locked

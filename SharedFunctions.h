@@ -25,7 +25,8 @@ namespace SharedFunctions
 		Heart,
 		Sword,
 		Knife,
-		Defense
+		Defense,
+		NoItem = -1
 	};
 };
 

@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room(Player& player)
-	:myPlayer(&player), myDoor(nullptr), myItmeType(noItme)
+	:myPlayer(&player), myDoor(nullptr), myChest(nullptr), myItmeID(noItme)
 {
 }
 
@@ -16,7 +16,7 @@ void Room::EnterRoom()
 	std::cout << "You are in Room Nr: " << currentRoom << std::endl;
 	SharedFunctions::DorrAscii();
 	int input = DispalyOptionFightOrDoor();
-	
+
 	if (myPlayer->IsAlive())
 	{
 		system("cls");
@@ -53,9 +53,14 @@ void Room::AddDoor(Door* door)
 	}
 }
 
+void Room::AddChest(Chest* chest)
+{
+	myChest = chest;
+}
+
 void Room::AddItemToRoom(int itmeID)
 {
-	myItmeType = itmeID;
+	myItmeID = itmeID;
 }
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
@@ -179,27 +184,67 @@ void Room::DisplayItem()
 		//if itme in room display
 
 		//Display the item
-		if (myItmeType != -1)
+		if (myItmeID != noItme)
 		{
-			system("cls");
-			std::cout << "There is an Itme in the room:" << std::endl;
-			std::cout << myItems.GetItmeName(myItmeType);
-			std::cout << "  -->  " << myItems.GetItmeInfo(myItmeType);
+			int input = noItme;
 
-			std::cout << "1. Take the itme" << std::endl;
-			std::cout << "2. Skip it" << std::endl;
-			int input = SharedFunctions::ReadInputInt(1, 2);
-			if (input == 1)
+			bool itemIsNotTaken = true;
+
+			while (input != 0)
 			{
-				std::cout << std::endl;
-				myPlayer->AddItem(myItmeType);
-				myPlayer->DisplayPlayreCharacteristics();
+				system("cls");
+				if (itemIsNotTaken)
+				{
+					std::cout << "There is an Itme in the room:" << std::endl;
+					std::cout << myItems.GetItmeName(myItmeID);
+					std::cout << "  -->  " << myItems.GetItmeInfo(myItmeID) << std::endl;;
+					SharedFunctions::DrawLine();
+					std::cout << "1. Take the itme" << std::endl;
+					std::cout << "2. Skip it" << std::endl;
+				}
+				if (isThereAChest())
+				{
+					std::cout << "4. Open The Chest" << std::endl;
+				}
+				std::cout << "3. Display Inventory" << std::endl;
+				std::cout << "0. Exit" << std::endl;
+				input = SharedFunctions::ReadInputInt(0, 4);
+				if (input == 1)
+				{
+					if (itemIsNotTaken)
+					{
+						itemIsNotTaken = false;
+						std::cout << std::endl;
+						AddItemToInentory(myItmeID);
+					}
+				}
+				if (input == 4)
+				{
+					if (isThereAChest())
+					{
+						if (!(myChest->isChestEmpty()))
+						{
+							int chestItem = myChest->EnterChest();
+							AddItemToInentory(chestItem);
+						}
+						else
+						{
+							std::cout << "Empty!!" << std::endl;
+						}
+					}
+				}
+				if (input == 3)
+				{
+					myPlayer->DisplayInventory();
+				}
+				if (input == 2)
+				{
+					itemIsNotTaken = false;
+				}
+
+				system("pause");
 			}
-			else
-			{
-				std::cout << "No itme has been chosen" << std::endl;
-			}
-			system("pause");
+
 		}
 	}
 }
@@ -248,5 +293,27 @@ void Room::UseDoor()
 		myDoor->StoreThePlayerStringth(myPlayer->GetAttackValue());
 	}
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
+}
+
+void Room::AddItemToInentory(int ItemID)
+{
+	if (ItemID != static_cast<int>(SharedFunctions::MyItems::NoItem))
+	{
+		if (myPlayer->isCapacityNotFull())
+		{
+			myPlayer->AddItem(ItemID);
+			myPlayer->DisplayPlayreCharacteristics();
+		}
+		else
+		{
+			std::cout << "Your Inventroy Is Full" << std::endl;
+			system("pause");
+		}
+	}
+}
+
+bool Room::isThereAChest()
+{
+	return myChest != nullptr;
 }
 
