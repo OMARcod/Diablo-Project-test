@@ -1,25 +1,56 @@
 #pragma once
+#include "SharedFunctions.h"
 class Items
 {
 public:
 	Items();
 	~Items();
 
-	enum class MyItems
-	{
-		Heart,
-		Strength,
-		Knife,
-		Defense
+	
+	void SetItems(const SharedFunctions::MyItems itemType);
 
-	};
-
-
-	void SetItems(const MyItems itemType);
+	std::string GetItmeName(int itemID);
+	std::string GetItmeInfo(int itemID);
 
 private:
 
 };
+
+//easy fix
+//when you kill the enemys you find an item 
+//u can use take it or leav it
+//itm will be displayd 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //player can pick them 
 //should be in the room.. when player come in
@@ -51,10 +82,30 @@ private:
 // 
 //{ the same way that you add door
 
+//display after fight info // you got 50 hp
+// //display if the enemy has dropped somthing 
+// 
+// //pause
+// //delete screen
+// 
+// display the player items and ability 
+//
+//add other fucntion 
+//after figth option
+//in this fucniton 
+//show the itme that are in the room or that hs droped from the enemy
+//show the chechst 
+//let the player chose 
+//1. pick up sowrd  //only if enemy 
+//2. open the chest //only if there is 
+//3. pick up extra defence item
+//
+//close when the player hitt exit
+//dipslay the afterowrd result
 
 
-
-
+//for the spells items 
+//the player can only use them in one room 
 
 
 //Vg should be like doors locked

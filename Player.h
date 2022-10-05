@@ -19,6 +19,9 @@ public:
 
 	void ResetDefence();
 
+	void AddItem(int itmeID); //this function take the item
+	//id and make the calculation
+
 private:
 
 	int myCurrentRoom;

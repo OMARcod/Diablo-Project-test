@@ -20,5 +20,12 @@ namespace SharedFunctions
 
 	int GetRandomRandom(int aMin, int aMax);
 
+	enum class MyItems
+	{
+		Heart,
+		Sword,
+		Knife,
+		Defense
+	};
 };
 

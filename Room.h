@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Door.h"
-
+#include "Items.h"
 class Room
 {
 public:
@@ -16,6 +16,7 @@ public:
 
 	void EnterRoom();
 	void AddDoor(Door *door);
+	void AddItemToRoom(int itmeID);
 
 private:
 	std::vector<Enemy> myEnemies;
@@ -23,12 +24,18 @@ private:
 	Player *myPlayer;
 	Door* myDoor;
 
+	Items myItems;
+
+	int myItmeType;
+	static const int noItme = -1;
 	void DisplayEnemiesWithNumbersAndHealth();
 	int SelectEnemyToAttack();
 	bool IsAllEnemAlive();
 	void DeleteEnemyIfDead(); 
 	void DisplayAfterFightInfo(int oldEnemySize);
 	int DispalyOptionFightOrDoor();
+
+	void DisplayItem();
 
 	void FightEnemies();
 	void UseDoor();

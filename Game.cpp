@@ -20,6 +20,9 @@ Game::Game()
 	rooms[3].AddDoor(&doorRoom3);
 	rooms[4].AddDoor(&doorRoom4);
 	rooms[5].AddDoor(&doorRoom5);
+
+	rooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Knife));
+
 }
 
 

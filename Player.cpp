@@ -84,6 +84,28 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 	this->myCurrentRoom = aCurrentRoom;
 }
 
+void Player::AddItem(int itmeID)
+{
+	switch (itmeID)
+	{
+	case static_cast<int>(SharedFunctions::MyItems::Defense):
+		myDefense += 1000;
+		break;
+	case static_cast<int>(SharedFunctions::MyItems::Heart):
+		myHealth += 1000;
+		break;
+	case static_cast<int>(SharedFunctions::MyItems::Knife):
+		myStrength += 1000;
+		break;
+	case static_cast<int>(SharedFunctions::MyItems::Sword):
+		myStrength += 1000;
+		break;
+
+	default:
+		break;
+	}
+}
+
 void Player::DisplayPlayreCharacteristics()
 {
 	std::cout << "Player Hp : " << this->GetHealth() << " || Strength: " << this->myStrength

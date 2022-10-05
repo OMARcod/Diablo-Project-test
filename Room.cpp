@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room(Player& player)
-	:myPlayer(&player), myDoor(nullptr)
+	:myPlayer(&player), myDoor(nullptr), myItmeType(noItme)
 {
 }
 
@@ -51,6 +51,11 @@ void Room::AddDoor(Door* door)
 	{
 		myEnemies.push_back(myEnemy);
 	}
+}
+
+void Room::AddItemToRoom(int itmeID)
+{
+	myItmeType = itmeID;
 }
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
@@ -165,6 +170,40 @@ int Room::DispalyOptionFightOrDoor()
 	return input;
 }
 
+void Room::DisplayItem()
+{
+	if (!(myEnemies.size() > 0))
+	{
+		//if chest display
+		//if item drop display
+		//if itme in room display
+
+		//Display the item
+		if (myItmeType != -1)
+		{
+			system("cls");
+			std::cout << "There is an Itme in the room:" << std::endl;
+			std::cout << myItems.GetItmeName(myItmeType);
+			std::cout << "  -->  " << myItems.GetItmeInfo(myItmeType);
+
+			std::cout << "1. Take the itme" << std::endl;
+			std::cout << "2. Skip it" << std::endl;
+			int input = SharedFunctions::ReadInputInt(1, 2);
+			if (input == 1)
+			{
+				std::cout << std::endl;
+				myPlayer->AddItem(myItmeType);
+				myPlayer->DisplayPlayreCharacteristics();
+			}
+			else
+			{
+				std::cout << "No itme has been chosen" << std::endl;
+			}
+			system("pause");
+		}
+	}
+}
+
 void Room::FightEnemies()
 {
 	system("cls");
@@ -187,10 +226,8 @@ void Room::FightEnemies()
 		int oldSize = static_cast<int>(myEnemies.size());
 		DeleteEnemyIfDead();
 		DisplayAfterFightInfo(oldSize);
+		DisplayItem();
 	}
-	/*system("cls");
-	DisplayEnemiesWithNumbersAndHealth();
-	system("pause");*/
 
 	if (myEnemies.size() <= 0)
 	{
