@@ -1,13 +1,14 @@
 #include "Chest.h"
 
-Chest::~Chest()
-{
-}
 
-Chest::Chest(int itemID, bool isLocked)
-	:myItemID(itemID), myLockIsClosed(isLocked)
+Chest::Chest(int anItemType, bool isLocked)
+	:myItemID(anItemType), myLockIsClosed(isLocked)
 {
 	myItem.SetType(myItemID);
+}
+
+Chest::~Chest()
+{
 }
 bool Chest::isChestEmpty()
 {

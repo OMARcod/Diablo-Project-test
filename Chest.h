@@ -10,22 +10,18 @@ public:
 
 	const static int myNoItem = -1;
 
-	Chest(int itemID,bool isLocked); //need to be fixed 
+	Chest(int anItemType,bool isLocked);
 
 	int EnterChest();
 	bool isChestEmpty();
 	
 private:
 	
-	Items myItem;
 	bool myLockIsClosed;
-	int myItemID;
 	bool myChestIsEmpty;
+	int myItemID;
+	Items myItem;
 
-	//bool CheckIfPlayerIsStrongEnough();
 
 };
 
-//chest will have what item it have 
-//chest will return the itemID
-//chest will return if the player used the itme

@@ -1,36 +1,36 @@
 #include "Game.h"
 
 Game::Game()
-	:noRoom(-1), arraySize(6), myRoom(0),
-	room(player),
-	doorRoom0(0, 1, 5, noRoom, false, true),
-	doorRoom1(0, 2),
-	doorRoom2(1, 3),
-	doorRoom3(2, 4, 5),
-	doorRoom4(3, 5, 0, 1),
-	doorRoom5(4, 6),
-	normalChest(static_cast<int>(SharedFunctions::MyItems::Milk), false),
-	magicCheest(static_cast<int>(SharedFunctions::MyItems::Heart), false)
+	:noRoom(-1), arraySize(6), myRoomNr(0),
+	myRoom(myPlayer),
+	myDoorRoom0(0, 1, 5, noRoom, false, true),
+	myDoorRoom1(0, 2),
+	myDoorRoom2(1, 3),
+	myDoorRoom3(2, 4, 5),
+	myDoorRoom4(3, 5, 0, 1),
+	myDoorRoom5(4, 6),
+	myNormalChest(static_cast<int>(SharedFunctions::MyItems::Milk), false),
+	myMagicCheest(static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill), false)
 {
 	for (int i = 0; i < arraySize; i++)
 	{
-		rooms.push_back(room);
+		myRooms.push_back(myRoom);
 	}
-	rooms[0].AddDoor(&doorRoom0);
-	rooms[1].AddDoor(&doorRoom1);
-	rooms[2].AddDoor(&doorRoom2);
-	rooms[3].AddDoor(&doorRoom3);
-	rooms[4].AddDoor(&doorRoom4);
-	rooms[5].AddDoor(&doorRoom5);
+	myRooms[0].AddDoor(&myDoorRoom0);
+	myRooms[1].AddDoor(&myDoorRoom1);
+	myRooms[2].AddDoor(&myDoorRoom2);
+	myRooms[3].AddDoor(&myDoorRoom3);
+	myRooms[4].AddDoor(&myDoorRoom4);
+	myRooms[5].AddDoor(&myDoorRoom5);
 
-	rooms[0].AddChest(&normalChest);
-	rooms[1].AddChest(&magicCheest);
+	myRooms[0].AddChest(&myMagicCheest);
+	myRooms[1].AddChest(&myNormalChest);
 
 
-	rooms[0].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
-	rooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Sword));
-	rooms[2].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
-	rooms[3].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Heart));
+	myRooms[0].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
+	myRooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Sword));
+	myRooms[2].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
+	myRooms[3].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Heart));
 
 }
 
@@ -38,12 +38,12 @@ Game::Game()
 
 void Game::GameLoop()
 {
-	while (player.GetCurrentRoom() < rooms.size() && player.IsAlive() == true)
+	while (myPlayer.GetCurrentRoom() < myRooms.size() && myPlayer.IsAlive() == true)
 	{
-		myRoom = player.GetCurrentRoom();
-		rooms[myRoom].EnterRoom();
+		myRoomNr = myPlayer.GetCurrentRoom();
+		myRooms[myRoomNr].EnterRoom();
 	}
-	if (player.IsAlive())
+	if (myPlayer.IsAlive())
 	{
 		std::cout << "Diablo defeated!" << std::endl;
 		SharedFunctions::DeathAscii();

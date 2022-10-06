@@ -1,7 +1,8 @@
 #include "Room.h"
 
 Room::Room(Player& player)
-	:myPlayer(&player), myDoor(nullptr), myChest(nullptr), myItmeID(noItme)
+	: myItemType(static_cast<int>(SharedFunctions::MyItems::NoItem)),
+	myPlayer(&player), myDoor(nullptr), myChest(nullptr)
 {
 }
 
@@ -45,7 +46,7 @@ void Room::AddDoor(Door* door)
 {
 	myDoor = door;
 
-	int nrOfEnemies = SharedFunctions::GetRandomRandom(2, 3);
+	int nrOfEnemies = SharedFunctions::GetRandomNumber(2, 3);
 	for (int i = 0; i < nrOfEnemies; i++)
 	{
 		myEnemies.push_back(myEnemy);
@@ -57,10 +58,10 @@ void Room::AddChest(Chest* chest)
 	myChest = chest;
 }
 
-void Room::AddItemToRoom(int itmeID)
+void Room::AddItemToRoom(int anItemType)
 {
-	myItmeID = itmeID;
-	myItems.SetType(myItmeID);
+	myItemType = anItemType;
+	myItems.SetType(myItemType);
 }
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
@@ -157,7 +158,7 @@ int Room::DispalyOptionFightOrDoor()
 			if (input == 2)
 			{
 				DisplayItem();
-			} //i think an error will happen because it will return 2 which mean use the door
+			} 
 		}
 	}
 	return input;
@@ -167,12 +168,8 @@ void Room::DisplayItem()
 {
 	if (!(myEnemies.size() > 0))
 	{
-		//if chest display
-		//if item drop display
-		//if itme in room display
 
-		//Display the item
-		if (myItmeID != noItme)
+		if (myItemType != noItme)
 		{
 			int input = noItme;
 
@@ -188,12 +185,12 @@ void Room::DisplayItem()
 					SharedFunctions::DrawLine();
 					std::cout << "1. Take the itme" << std::endl;
 				}
+				std::cout << "2. Player info" << std::endl;
+				std::cout << "3. Display Inventory" << std::endl;
 				if (isThereAChest())
 				{
 					std::cout << "4. Open The Chest" << std::endl;
 				}
-				std::cout << "3. Display Inventory" << std::endl;
-				std::cout << "2. Player info" << std::endl;
 				std::cout << "0. Exit" << std::endl;
 				input = SharedFunctions::ReadInputInt(0, 4);
 				if (input == 1)
@@ -202,7 +199,7 @@ void Room::DisplayItem()
 					{
 						itemIsNotTaken = false;
 						std::cout << std::endl;
-						AddItemToInentory(myItmeID);
+						AddItemToInentory(myItemType);
 					}
 				}
 				if (input == 4)
@@ -276,17 +273,17 @@ void Room::FightEnemies()
 
 }
 
-void Room::DisplayAfterFightInfo(const int oldEnemySize,const int oldHealth,const int oldDefence)
+void Room::DisplayAfterFightInfo(const int anOldEnemySize,const int anOldHealth,const int anOldDefence)
 {
-	
-	std::cout << "You Killed " << oldEnemySize - myEnemies.size() << std::endl;
+	myPlayer->DisableTheSpill();
+	std::cout << "You Killed " << anOldEnemySize - myEnemies.size() << std::endl;
 	if (myEnemies.size() > 0)
 	{
 		std::cout << myEnemies.size() << " Enemy has attacked you ||";
 		std::cout << "Total Damage = " << (myEnemies.size() * myEnemies[0].GetAttackValue()) << std::endl;
 		SharedFunctions::DrawLine();
-		std::cout << "Old HP: " << oldHealth << " || New Hp --> " << myPlayer->GetHealth() << std::endl;
-		std::cout << "Old Defence: " << oldDefence << " || New Defence --> " << myPlayer->GetDefence() << std::endl;
+		std::cout << "Old HP: " << anOldHealth << " || New Hp --> " << myPlayer->GetHealth() << std::endl;
+		std::cout << "Old Defence: " << anOldDefence << " || New Defence --> " << myPlayer->GetDefence() << std::endl;
 		SharedFunctions::DrawLine(); 
 	}
 	else
@@ -294,7 +291,6 @@ void Room::DisplayAfterFightInfo(const int oldEnemySize,const int oldHealth,cons
 		std::cout << "All enemies are dead!" << std::endl;
 		std::cout << "Total Damage = 0" << std::endl;
 	}
-
 	system("pause");
 }
 
@@ -308,14 +304,14 @@ void Room::UseDoor()
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
 
-void Room::AddItemToInentory(int ItemID)
+void Room::AddItemToInentory(int anItemType)
 {
-
-	if (ItemID != static_cast<int>(SharedFunctions::MyItems::NoItem))
+	
+	if (anItemType != static_cast<int>(SharedFunctions::MyItems::NoItem))
 	{
 		if (myPlayer->isCapacityNotFull())
 		{
-			myPlayer->AddItem(ItemID);
+			myPlayer->AddItem(anItemType);
 			myPlayer->DisplayPlayreCharacteristics();
 		}
 		else

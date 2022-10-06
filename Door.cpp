@@ -151,7 +151,7 @@ int Door::GetNextDestnationRoom(const int& aCurrentRoomIndex)
 				std::cout << "You are not strong enough to open the door" << std::endl;
 			}
 		}
-		else //New
+		else 
 		{
 			roomIndex = aCurrentRoomIndex;
 		}

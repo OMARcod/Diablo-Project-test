@@ -18,31 +18,30 @@ public:
 	void EnterRoom();
 	void AddDoor(Door *door);
 	void AddChest(Chest *chest);
-	void AddItemToRoom(int itmeID);
+	void AddItemToRoom(int anItemType);
 
 private:
+	static const int noItme = -1;
+	int myItemType;
+
+
 	std::vector<Enemy> myEnemies;
 	Enemy myEnemy;
 	Player *myPlayer;
 	Door* myDoor;
-	Chest* myChest; //new
+	Chest* myChest;
+	Items myItems;
 
-	Items myItems; //new
 
-	int myItmeID;
-	static const int noItme = -1;
 	void DisplayEnemiesWithNumbersAndHealth();
 	int SelectEnemyToAttack();
 	bool IsAllEnemAlive();
 	void DeleteEnemyIfDead(); 
-	void DisplayAfterFightInfo(const int oldEnemySize, const int oldHealth, const int oldDefence);
+	void DisplayAfterFightInfo(const int anOldEnemySize, const int anOldHealth, const int anOldDefence);
 	int DispalyOptionFightOrDoor();
-
 	void DisplayItem();
-	
 	void FightEnemies();
 	void UseDoor();
-	
-	void AddItemToInentory(int ItemID);
+	void AddItemToInentory(int anItemType);
 	bool isThereAChest();
 };

@@ -18,7 +18,7 @@ namespace SharedFunctions
 	void DrawThisString(std::string art, int nrOfTime);
 	void DrawWelcomeAscii();
 
-	int GetRandomRandom(int aMin, int aMax);
+	int GetRandomNumber(int aMin, int aMax);
 
 	enum class MyItems
 	{
@@ -29,7 +29,5 @@ namespace SharedFunctions
 		MaxHealthSpill,
 		NoItem = -1
 	};
-
-	
 };
 

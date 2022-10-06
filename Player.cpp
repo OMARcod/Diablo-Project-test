@@ -6,9 +6,11 @@ Player::Player()
 	, myDefense(myPhysics + (myAgility * 5))
 	, myAttackValue(myStrength* myAgility)
 	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10))
-	, myCarryingCapacity(myStrength + myAgility) //30
-	, myOriginalDefense(myDefense)
-	,itemWaight(10) //10kg
+	, myCarryingCapacity(myStrength + myAgility)
+	, myItemWaight(10)
+	, mySpillIsActive(false)
+	, myMaxSpillDuration(3)
+	, myCurrentSpillDuration(0)
 {
 
 }
@@ -84,14 +86,30 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 	this->myCurrentRoom = aCurrentRoom;
 }
 
-void Player::AddItem(int itmeID)
+void Player::DisableTheSpill()
+{
+	int amountOfWaight = 10;
+	if (mySpillIsActive)
+	{
+		myCurrentSpillDuration++;
+		if (myCurrentSpillDuration >= myMaxSpillDuration)
+		{
+			myCurrentSpillDuration = 0;
+			mySpillIsActive = false;
+			myHealth -= myItem.GetMaxHealthSpillValue();
+			assert(myHealth >= 0);
+			myCarryingCapacity += amountOfWaight;
+		}
+	}
+}
+
+void Player::AddItem(int anItemType)
 {
 	myItemsVector.push_back(myItem);
-	myItemsVector[(myItemsVector.size()-1)].SetType(itmeID);
+	myItemsVector[(myItemsVector.size()-1)].SetType(anItemType);
 
 
-
-	switch (itmeID)
+	switch (anItemType)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
 		myDefense += myItem.GetDefenseValue();
@@ -106,9 +124,13 @@ void Player::AddItem(int itmeID)
 		myAttackValue += myItem.GetSwordValue();
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
-		myHealth += myItem.GetMaxHealthSpillValue();
-		break;
-
+	{
+		if (!mySpillIsActive)
+		{
+			myHealth += myItem.GetMaxHealthSpillValue();
+			mySpillIsActive = true;
+		}
+	}
 	default:
 		break;
 	}
@@ -116,7 +138,7 @@ void Player::AddItem(int itmeID)
 
 bool Player::isCapacityNotFull()
 {
-	return (myItemsVector.size() * itemWaight) < myCarryingCapacity;
+	return (myItemsVector.size() * myItemWaight) < myCarryingCapacity;
 }
 
 

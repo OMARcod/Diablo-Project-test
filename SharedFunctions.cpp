@@ -55,13 +55,16 @@ int SharedFunctions::ReadInputInt(int aMinNr, int aMaxNr)
 	return inputNr;
 }
 
-int SharedFunctions::GetRandomRandom(int aMin, int aMax)
+int SharedFunctions::GetRandomNumber(int aMin, int aMax)
 {
 	static std::random_device seed;
 	static std::mt19937 rndEngine(seed());
 	std::uniform_int_distribution<int> rndDist(aMin, aMax);
 	return rndDist(rndEngine);
 }
+
+
+
 
 void SharedFunctions::DeathAscii()
 {
@@ -196,9 +199,8 @@ void SharedFunctions::DrawWelcomeAscii()
 	SharedFunctions::DrawLine();
 	std::cout << "Info:" << std::endl;
 	std::cout << "You win if you can reach room 6" << std::endl;
-	std::cout << "You get 50 Hp when you enter a new room " << std::endl;
-	//std::cout << "Your defense resets when you enter a new room" << std::endl;
 
+	std::cout << "Magic spill will desabear after killing 3 enimes" << std::endl;
 	system("pause");
 
 }

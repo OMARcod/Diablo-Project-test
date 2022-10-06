@@ -19,31 +19,31 @@ public:
 	void DisplayPlayreHpAndDefence();
 
 
-	void AddItem(int itmeID); //this function take the item
-	//id and make the calculation
+	void AddItem(int anItemType);
 	bool isCapacityNotFull();
 	void DisplayInventory();
 
-	void AcctiveSpill();
+	void DisableTheSpill();
 	
 private:
+	bool mySpillIsActive;
+
 
 	int myCurrentRoom;
-	
 	int myStrength; 
 	int myAgility; 
 	int myPhysics; 
 	int myDefense;
 
-
 	int myAttackValue;
 	int myHealth;
-	int myCarryingCapacity; // myCarryingCapacity(myStrength + myAgility) //change it 
+	int myCarryingCapacity;
 
-	const int myOriginalDefense;
-	const int itemWaight;
+	int myItemWaight;
 
-	//new 
+	int myMaxSpillDuration;
+	int myCurrentSpillDuration;
+
 	std::vector<Items> myItemsVector;
 	Items myItem;
 };

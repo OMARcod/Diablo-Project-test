@@ -14,37 +14,21 @@ public:
 private:
 	const int noRoom;
 	const int arraySize;
-	int myRoom;
+	int myRoomNr;
 
-	Player player;
-	Room room;
-	Door doorRoom0;
-	Door doorRoom1;
-	Door doorRoom2;
-	Door doorRoom3;
-	Door doorRoom4;
-	Door doorRoom5;
+	Player myPlayer;
+	Room myRoom;
+	Door myDoorRoom0;
+	Door myDoorRoom1;
+	Door myDoorRoom2;
+	Door myDoorRoom3;
+	Door myDoorRoom4;
+	Door myDoorRoom5;
 
-	Chest normalChest;
-	Chest magicCheest;
+	Chest myNormalChest;
+	Chest myMagicCheest;
 
 
-	std::vector<Room> rooms;
+	std::vector<Room> myRooms;
 };
 
-/*
-		 __________
-		/\____;;___\
-	   | /         /
-	   `. ())oo() .
-		|\(%()*^^()^\
-	   %| |-%-------|
-	  % \ | %  ))   |
-	  %  \|%________|
-*/
-
-
-//todo 
-//fix the witght 
-//fix the magic thing 
-//fix the chset is locked

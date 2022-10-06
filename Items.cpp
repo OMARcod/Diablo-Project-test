@@ -1,11 +1,10 @@
 #include "Items.h"
 
 Items::Items()
-	:myItmeID(0)
+	:myItemType(0)
 	, myHeartValue(50), myDefenseValue(100),myMilkValue(10),mySwordValue(30),myMaxHealthSpillValue(1000)
 {
 }
-
 
 
 Items::~Items()
@@ -39,24 +38,24 @@ int Items::GetMaxHealthSpillValue()
 }
 
 
-void Items::SetType(int itemType)
+void Items::SetType(int anItemType)
 {
-	switch (itemType)
+	switch (anItemType)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::Defense);
+		myItemType = static_cast<int>(SharedFunctions::MyItems::Defense);
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Heart):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::Heart);
+		myItemType = static_cast<int>(SharedFunctions::MyItems::Heart);
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Milk):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::Milk);
+		myItemType = static_cast<int>(SharedFunctions::MyItems::Milk);
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::Sword);
+		myItemType = static_cast<int>(SharedFunctions::MyItems::Sword);
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill);
+		myItemType = static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill);
 		break;
 	default:
 		break;
@@ -65,7 +64,7 @@ void Items::SetType(int itemType)
 
 std::string Items::GetItmeName()
 {
-	switch (myItmeID)
+	switch (myItemType)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
 	{
@@ -97,7 +96,7 @@ std::string Items::GetItmeName()
 
 std::string Items::GetItmeInfo()
 {
-	switch (myItmeID)
+	switch (myItemType)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
 		return "100+ defence";
