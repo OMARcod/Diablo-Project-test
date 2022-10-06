@@ -9,7 +9,7 @@ Game::Game()
 	doorRoom3(2, 4, 5),
 	doorRoom4(3, 5, 0, 1),
 	doorRoom5(4, 6),
-	normalChest(static_cast<int>(SharedFunctions::MyItems::Sword), false),
+	normalChest(static_cast<int>(SharedFunctions::MyItems::Milk), false),
 	magicCheest(static_cast<int>(SharedFunctions::MyItems::Heart), false)
 {
 	for (int i = 0; i < arraySize; i++)
@@ -28,9 +28,9 @@ Game::Game()
 
 
 	rooms[0].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
-	rooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Knife));
-	rooms[2].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Knife));
-	rooms[3].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Knife));
+	rooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Sword));
+	rooms[2].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
+	rooms[3].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Heart));
 
 }
 

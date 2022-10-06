@@ -11,20 +11,21 @@ public:
 	void LoseLife(int anAttackValue);
 	int GetAttackValue();
 	int GetHealth();
-	void AddLive();
+	int GetDefence();
 	int GetCurrentRoom();
 	void SetCurrentRoom(int aCurrentRoom);
 
 	void DisplayPlayreCharacteristics();
 	void DisplayPlayreHpAndDefence();
 
-	void ResetDefence();
 
 	void AddItem(int itmeID); //this function take the item
 	//id and make the calculation
 	bool isCapacityNotFull();
 	void DisplayInventory();
 
+	void AcctiveSpill();
+	
 private:
 
 	int myCurrentRoom;
@@ -40,6 +41,7 @@ private:
 	int myCarryingCapacity; // myCarryingCapacity(myStrength + myAgility) //change it 
 
 	const int myOriginalDefense;
+	const int itemWaight;
 
 	//new 
 	std::vector<Items> myItemsVector;

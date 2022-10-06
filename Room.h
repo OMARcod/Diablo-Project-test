@@ -35,11 +35,10 @@ private:
 	int SelectEnemyToAttack();
 	bool IsAllEnemAlive();
 	void DeleteEnemyIfDead(); 
-	void DisplayAfterFightInfo(int oldEnemySize);
+	void DisplayAfterFightInfo(const int oldEnemySize, const int oldHealth, const int oldDefence);
 	int DispalyOptionFightOrDoor();
 
 	void DisplayItem();
-	//void RoomsItem();
 	
 	void FightEnemies();
 	void UseDoor();

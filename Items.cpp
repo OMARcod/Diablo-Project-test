@@ -2,11 +2,40 @@
 
 Items::Items()
 	:myItmeID(0)
+	, myHeartValue(50), myDefenseValue(100),myMilkValue(10),mySwordValue(30),myMaxHealthSpillValue(1000)
 {
 }
 
+
+
 Items::~Items()
 {
+}
+
+int Items::GetHeartValue()
+{
+	return myHeartValue;
+}
+
+
+int Items::GetDefenseValue()
+{
+	return myDefenseValue;
+}
+
+int Items::GetMilkValue()
+{
+	return myMilkValue;
+}
+
+int Items::GetSwordValue()
+{
+	return mySwordValue;
+}
+
+int Items::GetMaxHealthSpillValue()
+{
+	return myMaxHealthSpillValue;
 }
 
 
@@ -20,58 +49,16 @@ void Items::SetType(int itemType)
 	case static_cast<int>(SharedFunctions::MyItems::Heart):
 		myItmeID = static_cast<int>(SharedFunctions::MyItems::Heart);
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		myItmeID = static_cast<int>(SharedFunctions::MyItems::Knife);
+	case static_cast<int>(SharedFunctions::MyItems::Milk):
+		myItmeID = static_cast<int>(SharedFunctions::MyItems::Milk);
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Sword):
 		myItmeID = static_cast<int>(SharedFunctions::MyItems::Sword);
 		break;
-	default:
-		break;
-	}
-}
-
-std::string Items::GetItmeName(int itemID)
-{
-	switch (itemID)
-	{
-	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		return "Shield";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Heart):
-		return "Heart";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		return "Knife";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		return "Sword";
-		break;
-
-	default:
-		return "ERROR";
-		break;
-	}
-}
-
-std::string Items::GetItmeInfo(int itemID)
-{
-	switch (itemID)
-	{
-	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		return "20+ defence";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Heart):
-		return "50+ health";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		return "10+ strength";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		return "30+ strenght";
+	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
+		myItmeID = static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill);
 		break;
 	default:
-		return "ERROR";
 		break;
 	}
 }
@@ -81,21 +68,30 @@ std::string Items::GetItmeName()
 	switch (myItmeID)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
+	{
 		return "Shield";
-		break;
+	}
 	case static_cast<int>(SharedFunctions::MyItems::Heart):
+	{
 		return "Heart";
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		return "Knife";
-		break;
+	}
+	case static_cast<int>(SharedFunctions::MyItems::Milk):
+	{
+		return "Milk";
+	}
 	case static_cast<int>(SharedFunctions::MyItems::Sword):
+	{
 		return "Sword";
-		break;
-
+	}
+	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
+	{
+		return "Health Spill";
+	}
 	default:
+	{
 		return "ERROR";
-		break;
+	}
+
 	}
 }
 
@@ -104,16 +100,19 @@ std::string Items::GetItmeInfo()
 	switch (myItmeID)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		return "20+ defence";
+		return "100+ defence";
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Heart):
 		return "50+ health";
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		return "10+ strength";
+	case static_cast<int>(SharedFunctions::MyItems::Milk):
+		return "10+ attack value";
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		return "30+ strenght";
+		return "30+ attack value";
+		break;
+	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
+		return "1000+ health";
 		break;
 	default:
 		return "ERROR";

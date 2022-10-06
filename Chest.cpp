@@ -7,6 +7,7 @@ Chest::~Chest()
 Chest::Chest(int itemID, bool isLocked)
 	:myItemID(itemID), myLockIsClosed(isLocked)
 {
+	myItem.SetType(myItemID);
 }
 bool Chest::isChestEmpty()
 {
@@ -26,8 +27,8 @@ int Chest::EnterChest()
 				system("cls");
 				std::cout << "------The Chest-------" << std::endl;
 				std::cout << "ITEM!:" << std::endl;
-				std::cout << myItem.GetItmeName(myItemID);
-				std::cout << "  -->  " << myItem.GetItmeInfo(myItemID) << std::endl;;
+				std::cout << myItem.GetItmeName();
+				std::cout << "  -->  " << myItem.GetItmeInfo() << std::endl;;
 				SharedFunctions::DrawLine();
 				std::cout << "1. Take the itme" << std::endl;
 				std::cout << "0. Exit" << std::endl;

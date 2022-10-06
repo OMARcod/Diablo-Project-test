@@ -24,9 +24,12 @@ namespace SharedFunctions
 	{
 		Heart,
 		Sword,
-		Knife,
+		Milk,
 		Defense,
+		MaxHealthSpill,
 		NoItem = -1
 	};
+
+	
 };
 

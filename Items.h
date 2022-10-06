@@ -9,23 +9,27 @@ public:
 	
 	void SetType(int itemType);
 
-	std::string GetItmeName(int itemID);
-	std::string GetItmeInfo(int itemID);
+
 
 	std::string GetItmeName();
 	std::string GetItmeInfo();
+
+	int GetHeartValue();
+	int GetDefenseValue();
+	int GetMilkValue();
+	int GetSwordValue();
+	int GetMaxHealthSpillValue();
+
 private:
 	int myItmeID;
 
+
+	int myHeartValue;
+	int myDefenseValue;
+	int myMilkValue;
+	int mySwordValue;
+	int myMaxHealthSpillValue;
 };
-
-//easy fix
-//when you kill the enemys you find an item 
-//u can use take it or leav it
-//itm will be displayd 
-
-
-
 
 
 

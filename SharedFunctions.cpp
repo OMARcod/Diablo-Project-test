@@ -197,7 +197,7 @@ void SharedFunctions::DrawWelcomeAscii()
 	std::cout << "Info:" << std::endl;
 	std::cout << "You win if you can reach room 6" << std::endl;
 	std::cout << "You get 50 Hp when you enter a new room " << std::endl;
-	std::cout << "Your defense resets when you enter a new room" << std::endl;
+	//std::cout << "Your defense resets when you enter a new room" << std::endl;
 
 	system("pause");
 

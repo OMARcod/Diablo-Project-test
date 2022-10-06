@@ -2,12 +2,13 @@
 
 Player::Player()
 	:myCurrentRoom(0)
-	, myStrength(5), myAgility(5), myPhysics(5)
+	, myStrength(15), myAgility(15), myPhysics(5)
 	, myDefense(myPhysics + (myAgility * 5))
 	, myAttackValue(myStrength* myAgility)
 	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10))
-	, myCarryingCapacity(2)
+	, myCarryingCapacity(myStrength + myAgility) //30
 	, myOriginalDefense(myDefense)
+	,itemWaight(10) //10kg
 {
 
 }
@@ -68,10 +69,9 @@ int Player::GetHealth()
 {
 	return this->myHealth;
 }
-
-void  Player::AddLive()
+int Player::GetDefence()
 {
-	this->myHealth += 50;
+	return this->myDefense;
 }
 
 int Player::GetCurrentRoom()
@@ -87,21 +87,26 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 void Player::AddItem(int itmeID)
 {
 	myItemsVector.push_back(myItem);
-	myItem.SetType(itmeID);
+	myItemsVector[(myItemsVector.size()-1)].SetType(itmeID);
+
+
 
 	switch (itmeID)
 	{
 	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		myDefense += 1000;
+		myDefense += myItem.GetDefenseValue();
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Heart):
-		myHealth += 1000;
+		myHealth += myItem.GetHeartValue();
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Knife):
-		myStrength += 1000;
+	case static_cast<int>(SharedFunctions::MyItems::Milk):
+		myAttackValue += myItem.GetMilkValue();
 		break;
 	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		myStrength += 1000;
+		myAttackValue += myItem.GetSwordValue();
+		break;
+	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
+		myHealth += myItem.GetMaxHealthSpillValue();
 		break;
 
 	default:
@@ -111,7 +116,7 @@ void Player::AddItem(int itmeID)
 
 bool Player::isCapacityNotFull()
 {
-	return myItemsVector.size() < myCarryingCapacity;
+	return (myItemsVector.size() * itemWaight) < myCarryingCapacity;
 }
 
 
@@ -131,10 +136,7 @@ void Player::DisplayPlayreHpAndDefence()
 		<< std::endl;
 }
 
-void Player::ResetDefence()
-{
-	this->myDefense = myOriginalDefense;
-}
+
 
 
 
