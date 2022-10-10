@@ -6,6 +6,8 @@
 #include "Door.h"
 #include "Items.h"
 #include "Chest.h"
+#include "EnemyFactory.h"
+
 class Room
 {
 public:
@@ -25,13 +27,12 @@ private:
 	int myItemType;
 
 
-	std::vector<Enemy> myEnemies;
-	Enemy myEnemy;
+	std::vector<std::shared_ptr<Enemy>> myEnemies;
 	Player *myPlayer;
 	Door* myDoor;
 	Chest* myChest;
 	Items myItems;
-
+	EnemyFactory enemyFactory;
 
 	void DisplayEnemiesWithNumbersAndHealth();
 	int SelectEnemyToAttack();

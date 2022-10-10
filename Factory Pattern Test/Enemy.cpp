@@ -27,7 +27,7 @@ int Enemy::GetMaxHealth() const
 
 std::string Enemy::GetName() const
 {
-    return std::string();
+    return myEnemyType->GetName();
 }
 
 void Enemy::TakeDamage(const int aDamage)

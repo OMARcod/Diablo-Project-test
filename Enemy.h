@@ -1,18 +1,32 @@
 #pragma once
 #include "SharedFunctions.h"
+#include "EnemyType.h"
+
+enum class eEnemyType
+{
+	Skeleton,
+	Slime,
+	Dragon,
+	Count
+};
+
+
 class Enemy
 {
 public:
-	Enemy();
+	Enemy() = delete;
+	Enemy(const EnemyType& aEnemyType);
 	~Enemy();
 
 	bool IsAlive();
 	int GetAttackValue();
 	int GetHealth();
-	void LoseLife(int anAttackValue);
+	void TakeDamage(int anAttackValue);
+	std::string GetName() const;
+
 
 private:
 
 	int myHealth;
-	int myAttackValue;
+	const EnemyType* myEnemyType;
 };

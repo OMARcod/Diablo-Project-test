@@ -30,8 +30,14 @@ void EnemyFactory::Init()
 
 }
 
-Enemy EnemyFactory::CreatEnemy(const eEnemyType aEnemyType) const
+std::shared_ptr<Enemy> EnemyFactory::CreatEnemy(const eEnemyType aEnemyType) const
 {
     Enemy newEnemy(myEnemyTypes[static_cast<int>(aEnemyType)]);
-    return newEnemy;
+    return std::make_shared<Enemy>(newEnemy);
 }
+
+//Enemy EnemyFactory::CreatEnemy(const eEnemyType aEnemyType) const
+//{
+//    Enemy newEnemy(myEnemyTypes[static_cast<int>(aEnemyType)]);
+//    return newEnemy;
+//}

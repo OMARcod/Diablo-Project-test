@@ -8,7 +8,7 @@ public:
 	~Player();
 
 	bool IsAlive();
-	void LoseLife(int anAttackValue);
+	void TakeDamage(int anAttackValue);
 	int GetAttackValue();
 	int GetHealth();
 	int GetDefence();

@@ -33,7 +33,7 @@ bool Player::IsAlive()
 	}
 }
 
-void Player::LoseLife(int anAttackValue)
+void Player::TakeDamage(int anAttackValue)
 {
 
 	if (myHealth - anAttackValue >= 0)

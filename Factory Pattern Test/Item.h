@@ -1,20 +1,22 @@
 #pragma once
 #include "sharedFunction.h"
-#include "EnemyType.h"
-enum class eEnemyType //public
+#include "ItemType.h"
+enum class eItemType //public
 {
-	Skeleton,
-	Slime, 
-	Dragon,
+	Heart,
+	Sword,
+	Milk,
+	Defense,
+	MaxHealthSpill,
 	Count
 };
 
-class Enemy
+class Item
 {
 public:
-	Enemy() = delete;
-	Enemy(const EnemyType& aEnemyType);
-	~Enemy();
+	Item() = delete;
+	Item(const ItemType& aEnemyType);
+	~Item();
 
 	bool IsAlive() const;
 

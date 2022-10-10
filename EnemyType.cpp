@@ -1,8 +1,8 @@
 #include "EnemyType.h"
 
 EnemyType::EnemyType()
-	:myMaxHealth(0),myStrength(0),myStamina(0),myDexterity(0)
-	,myName("")
+	:myMaxHealth(0), myStrength(0)
+	, myName("")
 {
 }
 
@@ -20,15 +20,7 @@ const int& EnemyType::GetStrength() const
 	return myStrength;
 }
 
-const int& EnemyType::GetDexterity() const
-{
-	return myDexterity;
-}
 
-const int& EnemyType::GetStamina() const
-{
-	return myStamina;
-}
 
 const std::string& EnemyType::GetName() const
 {
@@ -45,15 +37,6 @@ void EnemyType::SetStrength(const int& aStrength)
 	myStrength = aStrength;
 }
 
-void EnemyType::SetDexterityh(const int& aDexterity)
-{
-	myDexterity = aDexterity;
-}
-
-void EnemyType::SetStamina(const int& aStamina)
-{
-	myStamina = aStamina;
-}
 
 void EnemyType::SetName(const std::string& aName)
 {

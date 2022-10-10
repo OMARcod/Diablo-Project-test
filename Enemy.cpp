@@ -1,7 +1,9 @@
 #include "Enemy.h"
-Enemy::Enemy()
-	:myHealth(25),myAttackValue(35)
-{	
+Enemy::Enemy(const EnemyType& aEnemyType)
+	:myEnemyType(&aEnemyType)
+{
+	//myEnemyType = std::make_shared<EnemyType>(&aEnemyType);//
+	myHealth = myEnemyType->GetMaxHealth();
 }
 
 Enemy::~Enemy()
@@ -29,11 +31,11 @@ int Enemy::GetHealth()
 
 int Enemy::GetAttackValue()
 {
-	return this->myAttackValue;
+	return myEnemyType->GetStrength();
 }
 
 
-void Enemy::LoseLife(int anAttackValue)
+void Enemy::TakeDamage(int anAttackValue)
 {
 
 	if (myHealth - anAttackValue >= 0)
@@ -46,5 +48,10 @@ void Enemy::LoseLife(int anAttackValue)
 	}
 
 	assert(myHealth >= 0);
+}
+
+std::string Enemy::GetName() const
+{
+	return myEnemyType->GetName();
 }
 
