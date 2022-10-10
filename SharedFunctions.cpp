@@ -200,7 +200,7 @@ void SharedFunctions::DrawWelcomeAscii()
 	std::cout << "Info:" << std::endl;
 	std::cout << "You win if you can reach room 6" << std::endl;
 
-	std::cout << "Magic spill will desabear after killing 3 enimes" << std::endl;
+	std::cout << "Magic Spill will expire after killing 3 enemies" << std::endl;
 	system("pause");
 
 }
