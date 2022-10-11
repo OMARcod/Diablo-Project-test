@@ -57,11 +57,11 @@
     <ClCompile Include="Items.cpp">
       <Filter>Item</Filter>
     </ClCompile>
-    <ClCompile Include="ItemType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ItemFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemType.cpp">
+      <Filter>Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,11 +95,11 @@
     <ClInclude Include="Items.h">
       <Filter>Item</Filter>
     </ClInclude>
-    <ClInclude Include="ItemType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ItemFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemType.h">
+      <Filter>Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

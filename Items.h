@@ -22,3 +22,7 @@ private:
 	
 };
 
+//ToDo
+//make the logic of displaying and getting the items and change the player defence based on items...
+//fix chest items
+//make it shared ptr

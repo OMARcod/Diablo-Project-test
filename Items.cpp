@@ -1,5 +1,9 @@
 #include "Items.h"
 
+Items::Items()
+{
+}
+
 Items::Items(const ItemType& aItemType)
 	:myItemType(&aItemType)
 {
