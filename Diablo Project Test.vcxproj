@@ -132,7 +132,9 @@
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="EnemyType.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="Items.cpp" />
+    <ClCompile Include="ItemType.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -147,7 +149,9 @@
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="EnemyType.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Items.h" />
+    <ClInclude Include="ItemType.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SharedFunctions.h" />
