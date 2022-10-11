@@ -33,6 +33,7 @@ private:
 	Chest* myChest;
 	Items myItems;
 	EnemyFactory enemyFactory;
+	
 
 	void DisplayEnemiesWithNumbersAndHealth();
 	int SelectEnemyToAttack();

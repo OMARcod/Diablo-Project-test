@@ -17,9 +17,7 @@ public:
 	int GetMilkValue();
 	int GetSwordValue();
 	int GetMaxHealthSpillValue();
-	//omard
-	//omar
-	//omar
+ 
 private:
 
 	int myItemType;

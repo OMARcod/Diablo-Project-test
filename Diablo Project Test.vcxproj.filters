@@ -16,11 +16,14 @@
     <Filter Include="Source Files\Game Scripts">
       <UniqueIdentifier>{0f5eb665-58f4-4a73-a588-fb73bdbeb78f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{85689d57-ae3c-4749-a9eb-187fa8d934a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\Item">
+      <UniqueIdentifier>{7fdf9afa-a82b-4728-935e-5f9f5fbe1255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Game Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Game Scripts</Filter>
     </ClCompile>
@@ -39,23 +42,23 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Items.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Chest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyType.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
+      <Filter>Enemy\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,17 +74,20 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Items.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Chest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyType.h">
-      <Filter>Header Files</Filter>
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFactory.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Enemy\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
