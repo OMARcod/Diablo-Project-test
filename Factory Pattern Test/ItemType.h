@@ -16,6 +16,7 @@ namespace Diablo
 		void MakeSpell(const int aSpellLength);
 
 		void SetStat(const Stats::StatIndex aStatIndex, const int aValue);
+		void SetValue(int value);
 		void SetName(const std::string& aName);
 
 	private:

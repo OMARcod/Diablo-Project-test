@@ -86,6 +86,7 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 	this->myCurrentRoom = aCurrentRoom;
 }
 
+
 void Player::DisableTheSpill()
 {
 	int amountOfWaight = 10;
@@ -96,41 +97,47 @@ void Player::DisableTheSpill()
 		{
 			myCurrentSpillDuration = 0;
 			mySpillIsActive = false;
-			myHealth -= myItem.GetMaxHealthSpillValue();
-			assert(myHealth >= 0);
+			myToChange -= //myspill.value;
+			assert(myToChange >= 0);
 			myCarryingCapacity += amountOfWaight;
 		}
 	}
 }
 
+
+
+
 void Player::AddItem(int anItemType)
 {
 	myItemsVector.push_back(myItem);
-	myItemsVector[(myItemsVector.size()-1)].SetType(anItemType);
+	myItemsVector[(myItemsVector.size() - 1)].SetType(anItemType);
+	//myItemsVector.push_back(itemFactory.CreatItem(anItemType));
+	//brcause myitems vecotr is a vector of items
+
+	int toChange = 0;
+	//int to change  = myitem gettochange
+	//int value   = myitem.getvalue
+
+	//chsck if is spell 
+	//if(myItem.isSpell())
+	//myMaxSpillDuration = myItem.duration;
+	// mySpillValue;
+	// mySpillToChange;
+	//is Active = true
 
 
-	switch (anItemType)
+
+	switch (toChange)
 	{
-	case static_cast<int>(SharedFunctions::MyItems::Defense):
-		myDefense += myItem.GetDefenseValue();
+	case static_cast<int>(SharedFunctions::PlayerStats::Defense):
+		myDefense += myItem.GetValue();
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Heart):
-		myHealth += myItem.GetHeartValue();
+	case static_cast<int>(SharedFunctions::PlayerStats::Health):
+		myHealth += myItem.GetValue();
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Milk):
-		myAttackValue += myItem.GetMilkValue();
+	case static_cast<int>(SharedFunctions::PlayerStats::AttackValue):
+		myAttackValue += myItem.GetValue();
 		break;
-	case static_cast<int>(SharedFunctions::MyItems::Sword):
-		myAttackValue += myItem.GetSwordValue();
-		break;
-	case static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill):
-	{
-		if (!mySpillIsActive)
-		{
-			myHealth += myItem.GetMaxHealthSpillValue();
-			mySpillIsActive = true;
-		}
-	}
 	default:
 		break;
 	}

@@ -20,14 +20,12 @@ namespace SharedFunctions
 
 	int GetRandomNumber(int aMin, int aMax);
 
-	enum class MyItems
+
+	enum class PlayerStats
 	{
-		Heart,
-		Sword,
-		Milk,
 		Defense,
-		MaxHealthSpill,
-		NoItem = -1
+		Health,
+		AttackValue,
 	};
 };
 

@@ -21,16 +21,19 @@ public:
 	Item(const ItemTypes& aEnemyType);
 	~Item();
 
-	bool IsAlive() const;
-
-	int GetHealth() const;
-	int GetMaxHealth() const;
 	std::string GetName() const;
+	int GetValue();
+	int GetWhatItChange(); //return what it can change health strength ?? 
+
 
 	void TakeDamage(const int aDamage);
+	
+
+	
 
 private:
 	int myHealth;
-	const EnemyType* myEnemyType;
 };
+
+
 
