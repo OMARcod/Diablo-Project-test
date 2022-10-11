@@ -3,7 +3,7 @@
 #include <string>
 #include <random>
 #include <vector>
-#include <assert>
+#include <assert.h>
 
 namespace sharedFunction
 {
