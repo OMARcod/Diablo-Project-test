@@ -3,6 +3,9 @@
 #include "Room.h"
 #include "Player.h"
 #include "Chest.h"
+#include "ItemFactory.h"
+#include "Items.h"
+
 class Game
 {
 public:
@@ -28,6 +31,8 @@ private:
 	Chest myNormalChest;
 	Chest myMagicCheest;
 
+	ItemFactory itemFactory;
+	Items item;
 
 	std::vector<Room> myRooms;
 };

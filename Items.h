@@ -1,30 +1,24 @@
 #pragma once
 #include "SharedFunctions.h"
+#include "ItemType.h"
 class Items
 {
 public:
 	Items();
+	Items(const ItemType& aItemType);
 	~Items();
 
+	void UpdateTurnsLeftOnSpell();
+	bool SpellHasEnded() const;
+	bool IsSpell() const;
+	int GetRoundsOnSpellLeft() const;
+	SharedFunctions::PlayerStats GetWhatItChange();
+	int GetValue();
 	
-	void SetType(int anItemType);
-
-	std::string GetItmeName();
-	std::string GetItmeInfo();
-
-	int GetHeartValue();
-	int GetDefenseValue();
-	int GetMilkValue();
-	int GetSwordValue();
-	int GetMaxHealthSpillValue();
- 
+	
 private:
-
-	int myItemType;
-	int myHeartValue;
-	int myDefenseValue;
-	int myMilkValue;
-	int mySwordValue;
-	int myMaxHealthSpillValue;
+	int myRoundsOnSpellLeft;
+	const ItemType* myItemType;
+	
 };
 

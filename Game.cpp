@@ -9,8 +9,8 @@ Game::Game()
 	myDoorRoom3(2, 4, 5),
 	myDoorRoom4(3, 5, 0, 1),
 	myDoorRoom5(4, 6),
-	myNormalChest(static_cast<int>(SharedFunctions::MyItems::Milk), false),
-	myMagicCheest(static_cast<int>(SharedFunctions::MyItems::MaxHealthSpill), false)
+	myNormalChest(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk), false),
+	myMagicCheest(itemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill), false)
 {
 	for (int i = 0; i < arraySize; i++)
 	{
@@ -27,10 +27,10 @@ Game::Game()
 	myRooms[1].AddChest(&myNormalChest);
 
 
-	myRooms[0].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
-	myRooms[1].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Sword));
-	myRooms[2].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Defense));
-	myRooms[3].AddItemToRoom(static_cast<int>(SharedFunctions::MyItems::Heart));
+	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
+	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
+	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
 
 }
 

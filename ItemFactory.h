@@ -6,20 +6,32 @@
 
 class ItemFactory
 {
+	
 public:
-	ItemFactory();
+	ItemFactory() = default;
 	~ItemFactory();
 
+
+	enum class eItemTypes
+	{
+		Heart,
+		Sword,
+		Milk,
+		Shield,
+		MaxHealthSpill,
+		ItemTypeCount,
+		NoItem = -1,
+	};
+
+
 	void InitItemTypes();
-	Items CreatItem(const ItemType aItemType) const;
+	Items CreatItem(const eItemTypes aItemType) const;
 
 private:
-	std::array<ItemType, static_cast<int>(ItemTypes::ItemTypeCount)> myItemTypes;
+	std::array<ItemType, static_cast<int>(eItemTypes::ItemTypeCount)> myItemTypes;
 
 	void InitItemType();
-	void InitSpellType();
 
-	std::vector<ItemType>	myItem;
-	std::vector<ItemType>	mySpellCategory;
+	std::vector<eItemTypes>	myItemsCategory;
 };
 

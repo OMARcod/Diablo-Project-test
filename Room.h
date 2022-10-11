@@ -20,18 +20,22 @@ public:
 	void EnterRoom();
 	void AddDoor(Door *door);
 	void AddChest(Chest *chest);
-	void AddItemToRoom(int anItemType);
+	//void AddItemToRoom(int anItemType);
+	void AddItem(const Items& aItem);
 
 private:
-	static const int noItme = -1;
-	int myItemType;
+	//static const int noItme = -1;
+	//int myItemType;
 
 
 	std::vector<std::shared_ptr<Enemy>> myEnemies;
 	Player *myPlayer;
 	Door* myDoor;
 	Chest* myChest;
-	Items myItems;
+	//Items myItems;
+
+	std::vector<Items> myItems;
+
 	EnemyFactory enemyFactory;
 	
 

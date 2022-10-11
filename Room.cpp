@@ -1,8 +1,7 @@
 #include "Room.h"
 
 Room::Room(Player& player)
-	: myItemType(static_cast<int>(SharedFunctions::MyItems::NoItem)),
-	myPlayer(&player), myDoor(nullptr), myChest(nullptr)
+	:myPlayer(&player), myDoor(nullptr), myChest(nullptr)
 {
 	enemyFactory.Init();
 }
@@ -61,10 +60,9 @@ void Room::AddChest(Chest* chest)
 	myChest = chest;
 }
 
-void Room::AddItemToRoom(int anItemType)
+void Room::AddItem(const Items& aItem)
 {
-	myItemType = anItemType;
-	myItems.SetType(myItemType);
+	myItems.push_back(aItem);
 }
 
 void Room::DisplayEnemiesWithNumbersAndHealth()

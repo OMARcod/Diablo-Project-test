@@ -1,10 +1,9 @@
 #include "Chest.h"
 
 
-Chest::Chest(int anItemType, bool isLocked)
-	:myItemID(anItemType), myLockIsClosed(isLocked)
+Chest::Chest(const Items& aItem, bool isLocked)
+	:myItem(aItem), myLockIsClosed(isLocked)
 {
-	myItem.SetType(myItemID);
 }
 
 Chest::~Chest()

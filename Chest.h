@@ -10,7 +10,7 @@ public:
 
 	const static int myNoItem = -1;
 
-	Chest(int anItemType,bool isLocked);
+	Chest(const Items& aItem,bool isLocked);
 
 	int EnterChest();
 	bool isChestEmpty();
