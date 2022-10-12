@@ -1,6 +1,7 @@
 #pragma once
 #include "SharedFunctions.h"
 #include "Items.h"
+#include "ItemFactory.h"
 class Player
 {
 public:
@@ -19,7 +20,8 @@ public:
 	void DisplayPlayreHpAndDefence();
 
 
-	void AddItem(int anItemType);
+	void AddItem(const Items& aItem);
+
 	bool isCapacityNotFull();
 	void DisplayInventory();
 
@@ -45,5 +47,5 @@ private:
 	int myCurrentSpillDuration;
 
 	std::vector<Items> myItemsVector;
-	Items myItem;
+	//Items myItem;
 };

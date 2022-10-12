@@ -7,6 +7,7 @@
 #include "Items.h"
 #include "Chest.h"
 #include "EnemyFactory.h"
+#include "ItemFactory.h"
 
 class Room
 {
@@ -26,7 +27,7 @@ public:
 private:
 	//static const int noItme = -1;
 	//int myItemType;
-
+	
 
 	std::vector<std::shared_ptr<Enemy>> myEnemies;
 	Player *myPlayer;
@@ -34,7 +35,7 @@ private:
 	Chest* myChest;
 	//Items myItems;
 
-	std::vector<Items> myItems;
+	Items myItems;
 
 	EnemyFactory enemyFactory;
 	
@@ -48,6 +49,6 @@ private:
 	void DisplayItem();
 	void FightEnemies();
 	void UseDoor();
-	void AddItemToInentory(int anItemType);
+	void AddItemToInentory(const Items& aItem);
 	bool isThereAChest();
 };

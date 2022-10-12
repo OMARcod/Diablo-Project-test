@@ -14,11 +14,17 @@ public:
 	int GetRoundsOnSpellLeft() const;
 	SharedFunctions::PlayerStats GetWhatItChange();
 	int GetValue();
+	std::string GetName();
+	void GetItemInfo();
 	
 	
 private:
 	int myRoundsOnSpellLeft;
 	const ItemType* myItemType;
+	std::string myName;
+	int value;
+	SharedFunctions::PlayerStats myWhatItCanChange;
+	bool isSpell;
 	
 };
 

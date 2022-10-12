@@ -30,7 +30,6 @@ public:
 private:
 	std::array<ItemType, static_cast<int>(eItemTypes::ItemTypeCount)> myItemTypes;
 
-	void InitItemType();
 
 	std::vector<eItemTypes>	myItemsCategory;
 };

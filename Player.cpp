@@ -97,8 +97,8 @@ void Player::DisableTheSpill()
 		{
 			myCurrentSpillDuration = 0;
 			mySpillIsActive = false;
-			myToChange -= //myspill.value;
-			assert(myToChange >= 0);
+			//myToChange -= //myspill.value;
+			//assert(myToChange >= 0);
 			myCarryingCapacity += amountOfWaight;
 		}
 	}
@@ -107,14 +107,12 @@ void Player::DisableTheSpill()
 
 
 
-void Player::AddItem(int anItemType)
+void Player::AddItem(const Items& aItem)
 {
-	myItemsVector.push_back(myItem);
-	myItemsVector[(myItemsVector.size() - 1)].SetType(anItemType);
+	myItemsVector.push_back(aItem);
 	//myItemsVector.push_back(itemFactory.CreatItem(anItemType));
 	//brcause myitems vecotr is a vector of items
 
-	int toChange = 0;
 	//int to change  = myitem gettochange
 	//int value   = myitem.getvalue
 
@@ -125,18 +123,18 @@ void Player::AddItem(int anItemType)
 	// mySpillToChange;
 	//is Active = true
 
+	//TODO
 
-
-	switch (toChange)
+	switch (myItemsVector[myItemsVector.size() - 1].GetWhatItChange())
 	{
-	case static_cast<int>(SharedFunctions::PlayerStats::Defense):
-		myDefense += myItem.GetValue();
+	case SharedFunctions::PlayerStats::Defense:
+		myDefense += myItemsVector[myItemsVector.size() - 1].GetValue();
 		break;
-	case static_cast<int>(SharedFunctions::PlayerStats::Health):
-		myHealth += myItem.GetValue();
+	case SharedFunctions::PlayerStats::Health:
+		myHealth += myItemsVector[myItemsVector.size() - 1].GetValue();
 		break;
-	case static_cast<int>(SharedFunctions::PlayerStats::AttackValue):
-		myAttackValue += myItem.GetValue();
+	case SharedFunctions::PlayerStats::AttackValue:
+		myAttackValue += myItemsVector[myItemsVector.size() - 1].GetValue();
 		break;
 	default:
 		break;
@@ -178,8 +176,9 @@ void Player::DisplayInventory()
 	{
 		for (int i = 0; i < myItemsVector.size(); i++)
 		{
-			std::cout << myItemsVector[i].GetItmeName();
-			std::cout << "  -->  " << myItemsVector[i].GetItmeInfo() << std::endl;
+			std::cout << myItemsVector[i].GetName();
+			std::cout << "  -->  ";
+			myItemsVector[i].GetItemInfo();
 			SharedFunctions::DrawLine();
 		}
 	}

@@ -62,7 +62,7 @@ void Room::AddChest(Chest* chest)
 
 void Room::AddItem(const Items& aItem)
 {
-	myItems.push_back(aItem);
+	myItems = aItem;
 }
 
 void Room::DisplayEnemiesWithNumbersAndHealth()
@@ -167,12 +167,19 @@ int Room::DispalyOptionFightOrDoor()
 
 void Room::DisplayItem() 
 {
-	if (!(myEnemies.size() > 0))
+	std::string empty = "";
+	bool thereIsItem = false;
+	if (myItems.GetName().compare(empty))
+	{
+		thereIsItem = true;
+	}
+	// ! size > 0
+	if ((myEnemies.size() == 0) && thereIsItem)
 	{
 
-		if (myItemType != noItme)
+		//if (myItemType != ItemFactory::eItemTypes::NoItem)
 		{
-			int input = noItme;
+			int input = static_cast<int>(ItemFactory::eItemTypes::NoItem);
 
 			bool itemIsNotTaken = true;
 
@@ -181,8 +188,9 @@ void Room::DisplayItem()
 				if (itemIsNotTaken)
 				{
 					std::cout << "There is an Itme in the room:" << std::endl;
-					std::cout << myItems.GetItmeName();
-					std::cout << "  -->  " << myItems.GetItmeInfo() << std::endl;;
+					std::cout << myItems.GetName();
+					std::cout << "  -->  ";
+					myItems.GetItemInfo();
 					SharedFunctions::DrawLine();
 					std::cout << "1. Take the itme" << std::endl;
 				}
@@ -200,7 +208,7 @@ void Room::DisplayItem()
 					{
 						itemIsNotTaken = false;
 						std::cout << std::endl;
-						AddItemToInentory(myItemType);
+						AddItemToInentory(myItems);
 					}
 				}
 				if (input == 4)
@@ -209,8 +217,11 @@ void Room::DisplayItem()
 					{
 						if (!(myChest->isChestEmpty()))
 						{
-							int chestItem = myChest->EnterChest();
-							AddItemToInentory(chestItem);
+							bool isItemTaken = myChest->EnterChest();
+							if (isItemTaken)
+							{
+								AddItemToInentory(myChest->GetChestItem());
+							}
 						}
 						else
 						{
@@ -305,14 +316,13 @@ void Room::UseDoor()
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
 
-void Room::AddItemToInentory(int anItemType)
+void Room::AddItemToInentory(const Items& aItem)
 {
 	
-	if (anItemType != static_cast<int>(SharedFunctions::MyItems::NoItem))
-	{
+//	if (myItems.GetName() != ItemFactory::eItemTypes::NoItem)
 		if (myPlayer->isCapacityNotFull())
 		{
-			myPlayer->AddItem(anItemType);
+			myPlayer->AddItem(aItem);
 			myPlayer->DisplayPlayreCharacteristics();
 		}
 		else
@@ -320,7 +330,6 @@ void Room::AddItemToInentory(int anItemType)
 			std::cout << "Your Inventroy Is Full" << std::endl;
 			system("pause");
 		}
-	}
 }
 
 bool Room::isThereAChest()

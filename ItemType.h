@@ -2,8 +2,6 @@
 #include "SharedFunctions.h"
 
 
-	
-
 class ItemType
 {
 public:
@@ -18,7 +16,7 @@ public:
 	void SetWhatItChange(SharedFunctions::PlayerStats statToChange);
 	void SetValue(int aValue);
 
-	std::string GetName();
+	std::string GetName() const;
 	int GetValue() const;
 	int GetSpellStartLength() const;
 	SharedFunctions::PlayerStats GetWhatItChange() const;
@@ -27,9 +25,9 @@ public:
 
 private:
 
+	std::string myName;
 	bool myIsSpell;
 	int mySpellLength;
 	int myValue;
-	std::string myName;
 	SharedFunctions::PlayerStats myWhatItCanChange;
 };

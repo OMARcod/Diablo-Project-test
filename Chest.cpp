@@ -1,22 +1,31 @@
 #include "Chest.h"
+#include "ItemFactory.h"
 
-
-Chest::Chest(const Items& aItem, bool isLocked)
-	:myItem(aItem), myLockIsClosed(isLocked)
+Chest::Chest(bool isLocked)
+	: myLockIsClosed(isLocked), myChestIsEmpty(false)
 {
 }
 
 Chest::~Chest()
 {
 }
+
+void Chest::AddItem(const Items& aItem)
+{
+	myItem = aItem;
+}
+
 bool Chest::isChestEmpty()
 {
 	return myChestIsEmpty;
 }
-
-int Chest::EnterChest()
+Items Chest::GetChestItem()
 {
-	int input = static_cast<int>(SharedFunctions::MyItems::NoItem);
+	return myItem;
+}
+bool Chest::EnterChest()
+{
+	int input = -1;
 	int exit = 0;
 	if (!myChestIsEmpty)
 	{
@@ -27,8 +36,9 @@ int Chest::EnterChest()
 				system("cls");
 				std::cout << "------The Chest-------" << std::endl;
 				std::cout << "ITEM!:" << std::endl;
-				std::cout << myItem.GetItmeName();
-				std::cout << "  -->  " << myItem.GetItmeInfo() << std::endl;;
+				std::cout << myItem.GetName();
+				std::cout << "  -->  ";
+				myItem.GetItemInfo();
 				SharedFunctions::DrawLine();
 				std::cout << "1. Take the itme" << std::endl;
 				std::cout << "0. Exit" << std::endl;
@@ -37,15 +47,15 @@ int Chest::EnterChest()
 			if (input == 1)
 			{
 				myChestIsEmpty = true;
-				return myItemID;
+				return true;
 			}
 			if (input == 0)
 			{
-				return static_cast<int>(SharedFunctions::MyItems::NoItem);
+				return false;
 			}
 			system("pause");
 
 		}
 	}
-	return static_cast<int>(SharedFunctions::MyItems::NoItem);
+	return false;
 }

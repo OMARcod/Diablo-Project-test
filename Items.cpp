@@ -7,8 +7,13 @@ Items::Items()
 Items::Items(const ItemType& aItemType)
 	:myItemType(&aItemType)
 {
-	myRoundsOnSpellLeft = myItemType->GetSpellStartLength();
+	myRoundsOnSpellLeft = aItemType.GetSpellStartLength();
+	myName = aItemType.GetName();
+	value = aItemType.GetValue();
+	myWhatItCanChange = aItemType.GetWhatItChange();
+	isSpell = aItemType.isSpell();
 }
+
 
 Items::~Items()
 {
@@ -27,7 +32,7 @@ bool Items::SpellHasEnded() const
 
 bool Items::IsSpell() const
 {
-	return myItemType->isSpell();
+	return isSpell;
 }
 
 
@@ -43,5 +48,28 @@ SharedFunctions::PlayerStats Items::GetWhatItChange()
 
 int Items::GetValue()
 {
-	return myItemType->GetValue();
+	return value;
+}
+
+std::string Items::GetName()
+{
+	return myItemType->GetName();
+}
+
+void Items::GetItemInfo()
+{
+	switch (myWhatItCanChange)
+	{
+	case SharedFunctions::PlayerStats::AttackValue:
+		std::cout << "Attack Value" << " +" << myItemType->GetValue() << std::endl;
+		break;
+	case SharedFunctions::PlayerStats::Defense:
+		std::cout << "Defense" << " +" << myItemType->GetValue() << std::endl;
+		break;
+	case SharedFunctions::PlayerStats::Health:
+		std::cout << "Health" << " +" << myItemType->GetValue() << std::endl;
+		break;
+	default:
+		break;
+	}
 }

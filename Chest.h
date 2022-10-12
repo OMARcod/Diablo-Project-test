@@ -10,16 +10,17 @@ public:
 
 	const static int myNoItem = -1;
 
-	Chest(const Items& aItem,bool isLocked);
+	Chest(bool isLocked);
 
-	int EnterChest();
+	bool EnterChest();
+	Items GetChestItem();
 	bool isChestEmpty();
+	void AddItem(const Items& aItem);
 	
 private:
 	
 	bool myLockIsClosed;
 	bool myChestIsEmpty;
-	int myItemID;
 	Items myItem;
 
 

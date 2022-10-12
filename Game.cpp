@@ -9,8 +9,8 @@ Game::Game()
 	myDoorRoom3(2, 4, 5),
 	myDoorRoom4(3, 5, 0, 1),
 	myDoorRoom5(4, 6),
-	myNormalChest(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk), false),
-	myMagicCheest(itemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill), false)
+	myNormalChest(false),
+	myMagicCheest( false)
 {
 	for (int i = 0; i < arraySize; i++)
 	{
@@ -23,14 +23,18 @@ Game::Game()
 	myRooms[4].AddDoor(&myDoorRoom4);
 	myRooms[5].AddDoor(&myDoorRoom5);
 
+	myNormalChest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
+	myMagicCheest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill));
+
 	myRooms[0].AddChest(&myMagicCheest);
 	myRooms[1].AddChest(&myNormalChest);
 
+	itemFactory.InitItemTypes();
 
 	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
-	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
-	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
-	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[1].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[2].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
+	myRooms[3].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
 
 }
 

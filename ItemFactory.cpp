@@ -2,15 +2,13 @@
 ItemFactory::~ItemFactory()
 {
 }
-void ItemFactory::InitItemTypes()
-{
-}
+
 Items ItemFactory::CreatItem(const eItemTypes aItemType) const
 {
 	int itemIndex = static_cast<int>(aItemType);
-	return ;
+	return myItemTypes[itemIndex];
 }
-void ItemFactory::InitItemType()
+void ItemFactory::InitItemTypes()
 {
 	myItemTypes[static_cast<int>(eItemTypes::Heart)].SetWhatItChange(SharedFunctions::PlayerStats::Health);
 	myItemTypes[static_cast<int>(eItemTypes::Heart)].SetValue(100);
@@ -34,11 +32,5 @@ void ItemFactory::InitItemType()
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetWhatItChange(SharedFunctions::PlayerStats::Health);
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetValue(2000);
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetName("Max Health Spill");
-
-	myItemsCategory.push_back(eItemTypes::Heart);
-	myItemsCategory.push_back(eItemTypes::Shield);
-	myItemsCategory.push_back(eItemTypes::Milk);
-	myItemsCategory.push_back(eItemTypes::Sword);
-	myItemsCategory.push_back(eItemTypes::MaxHealthSpill);
 }
 

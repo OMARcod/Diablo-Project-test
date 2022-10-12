@@ -36,7 +36,12 @@ void ItemType::SetWhatItChange(SharedFunctions::PlayerStats statToChange)
 	myWhatItCanChange = statToChange;
 }
 
-std::string ItemType::GetName()
+void ItemType::SetValue(int aValue)
+{
+	myValue = aValue;
+}
+
+std::string ItemType::GetName() const
 {
 	return myName;
 }
@@ -46,10 +51,6 @@ SharedFunctions::PlayerStats ItemType::GetWhatItChange() const
 	return myWhatItCanChange;
 }
 
-void ItemType::SetValue(int aValue)
-{
-	myValue = aValue;
-}
 
 int ItemType::GetValue() const
 {
