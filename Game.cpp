@@ -34,7 +34,8 @@ Game::Game()
 	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
 	myRooms[1].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
 	myRooms[2].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
-	myRooms[3].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[4].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[5].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
 
 }
 

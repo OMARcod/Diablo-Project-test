@@ -26,8 +26,7 @@ public:
 
 
 	void InitItemTypes();
-	Items CreatItem(const eItemTypes aItemType) const;
-	//Items CreatItem(const eItemTypes aItemType) const;
+	std::shared_ptr<Items> CreatItem(const eItemTypes aItemType) const;
 
 private:
 	std::array<ItemType, static_cast<int>(eItemTypes::ItemTypeCount)> myItemTypes;

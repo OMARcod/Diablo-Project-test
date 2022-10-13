@@ -13,15 +13,16 @@ public:
 	Chest(bool isLocked);
 
 	bool EnterChest();
-	Items GetChestItem();
+	std::shared_ptr<Items> GetChestItem();
 	bool isChestEmpty();
-	void AddItem(const Items& aItem);
+	//void AddItem(const Items& aItem);
+	void AddItem(std::shared_ptr<Items> aItem);
 	
 private:
 	
 	bool myLockIsClosed;
 	bool myChestIsEmpty;
-	Items myItem;
+	std::shared_ptr<Items> myItem;
 
 
 };

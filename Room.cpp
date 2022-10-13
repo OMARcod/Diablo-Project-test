@@ -62,7 +62,7 @@ void Room::AddChest(Chest* chest)
 	myChest = chest;
 }
 
-void Room::AddItem(const Items& aItem)
+void Room::AddItem(std::shared_ptr<Items> aItem)
 {
 	myItems = aItem;
 }
@@ -171,7 +171,7 @@ void Room::DisplayItem()
 {
 	std::string empty = "";
 	bool thereIsItem = false;
-	if (myItems.GetName().compare(empty))
+	if (myItems->GetName().compare(empty))
 	{
 		thereIsItem = true;
 	}
@@ -190,9 +190,9 @@ void Room::DisplayItem()
 				if (itemIsNotTaken)
 				{
 					std::cout << "There is an Itme in the room:" << std::endl;
-					std::cout << myItems.GetName();
+					std::cout << myItems->GetName();
 					std::cout << "  -->  ";
-					myItems.GetItemInfo();
+					myItems->GetItemInfo();
 					SharedFunctions::DrawLine();
 					std::cout << "1. Take the itme" << std::endl;
 				}
@@ -318,7 +318,7 @@ void Room::UseDoor()
 	myPlayer->SetCurrentRoom(myDoor->EnterDoor(myPlayer->GetCurrentRoom()));
 }
 
-void Room::AddItemToInentory(const Items& aItem)
+void Room::AddItemToInentory(std::shared_ptr<Items> aItem)
 {
 	
 //	if (myItems.GetName() != ItemFactory::eItemTypes::NoItem)

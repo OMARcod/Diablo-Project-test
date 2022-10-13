@@ -1,7 +1,7 @@
 #include "Items.h"
 
 Items::Items()
-	:myRoundsOnSpellLeft(0),myItemType(nullptr),myName(""),value(0),isSpell(false)
+	:myRoundsOnSpellLeft(0),myItemType(nullptr),myName(""),myValue(0),myIsSpell(false)
 	,myWhatItCanChange(SharedFunctions::PlayerStats::AttackValue)
 {
 }
@@ -11,9 +11,9 @@ Items::Items(const ItemType& aItemType)
 {
 	myRoundsOnSpellLeft = aItemType.GetSpellStartLength();
 	myName = aItemType.GetName();
-	value = aItemType.GetValue();
+	myValue = aItemType.GetValue();
 	myWhatItCanChange = aItemType.GetWhatItChange();
-	isSpell = aItemType.isSpell();
+	myIsSpell = aItemType.isSpell();
 }
 
 
@@ -34,7 +34,7 @@ bool Items::SpellHasEnded() const
 
 bool Items::IsSpell() const
 {
-	return isSpell;
+	return myIsSpell;
 }
 
 
@@ -50,7 +50,7 @@ SharedFunctions::PlayerStats Items::GetWhatItChange()
 
 int Items::GetValue()
 {
-	return value;
+	return myValue;
 }
 
 std::string Items::GetName()

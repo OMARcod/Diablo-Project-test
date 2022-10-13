@@ -10,7 +10,7 @@ Chest::~Chest()
 {
 }
 
-void Chest::AddItem(const Items& aItem)
+void Chest::AddItem(std::shared_ptr<Items> aItem)
 {
 	myItem = aItem;
 }
@@ -19,7 +19,7 @@ bool Chest::isChestEmpty()
 {
 	return myChestIsEmpty;
 }
-Items Chest::GetChestItem()
+std::shared_ptr<Items> Chest::GetChestItem()
 {
 	return myItem;
 }
@@ -36,9 +36,9 @@ bool Chest::EnterChest()
 				system("cls");
 				std::cout << "------The Chest-------" << std::endl;
 				std::cout << "ITEM!:" << std::endl;
-				std::cout << myItem.GetName();
+				std::cout << myItem->GetName();
 				std::cout << "  -->  ";
-				myItem.GetItemInfo();
+				myItem->GetItemInfo();
 				SharedFunctions::DrawLine();
 				std::cout << "1. Take the itme" << std::endl;
 				std::cout << "0. Exit" << std::endl;

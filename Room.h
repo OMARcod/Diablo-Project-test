@@ -22,7 +22,8 @@ public:
 	void AddDoor(Door *door);
 	void AddChest(Chest *chest);
 	//void AddItemToRoom(int anItemType);
-	void AddItem(const Items& aItem);
+	//void AddItem(const Items& aItem);
+	void AddItem(std::shared_ptr<Items> aItem);
 
 private:
 	//static const int noItme = -1;
@@ -35,7 +36,7 @@ private:
 	Chest* myChest;
 	//Items myItems;
 
-	Items myItems;
+	std::shared_ptr<Items> myItems;
 
 	EnemyFactory enemyFactory;
 	
@@ -49,6 +50,7 @@ private:
 	void DisplayItem();
 	void FightEnemies();
 	void UseDoor();
-	void AddItemToInentory(const Items& aItem);
+	//void AddItemToInentory(const Items& aItem);
+	void AddItemToInentory(std::shared_ptr<Items> aItem);
 	bool isThereAChest();
 };

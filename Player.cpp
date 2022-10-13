@@ -108,8 +108,8 @@ void Player::DisableTheSpill()
 	int amountOfWaight = 10;
 	if (myHaveSpill)
 	{
-		myItemsVector[mySpillIndex].UpdateTurnsLeftOnSpell();
-		if (myItemsVector[mySpillIndex].GetRoundsOnSpellLeft() <= 0)
+		myItemsVector[mySpillIndex]->UpdateTurnsLeftOnSpell();
+		if (myItemsVector[mySpillIndex]->GetRoundsOnSpellLeft() <= 0)
 		{
 			myHaveSpill = false;
 			myCarryingCapacity += amountOfWaight;
@@ -120,12 +120,12 @@ void Player::DisableTheSpill()
 
 
 
-void Player::AddItem(const Items& aItem)
+void Player::AddItem(std::shared_ptr<Items> aItem)
 {
 	myItemsVector.push_back(aItem);
 	int ItemIndex = static_cast<int>(myItemsVector.size() - 1);
 
-	if (aItem.IsSpell())
+	if (aItem->IsSpell())
 	{
 		myHaveSpill = true;
 		mySpillIndex = ItemIndex;
@@ -136,16 +136,16 @@ void Player::AddItem(const Items& aItem)
 
 void Player::IncreasePlayerStat(int itemIndex)
 {
-	switch (myItemsVector[itemIndex].GetWhatItChange())
+	switch (myItemsVector[itemIndex]->GetWhatItChange())
 	{
 	case SharedFunctions::PlayerStats::Defense:
-		myDefense += myItemsVector[itemIndex].GetValue();
+		myDefense += myItemsVector[itemIndex]->GetValue();
 		break;
 	case SharedFunctions::PlayerStats::Health:
-		myHealth += myItemsVector[itemIndex].GetValue();
+		myHealth += myItemsVector[itemIndex]->GetValue();
 		break;
 	case SharedFunctions::PlayerStats::AttackValue:
-		myAttackValue += myItemsVector[itemIndex].GetValue();
+		myAttackValue += myItemsVector[itemIndex]->GetValue();
 		break;
 	default:
 		break;
@@ -153,16 +153,16 @@ void Player::IncreasePlayerStat(int itemIndex)
 }
 void Player::DecreasePlayerStat(int itemIndex)
 {
-	switch (myItemsVector[itemIndex].GetWhatItChange())
+	switch (myItemsVector[itemIndex]->GetWhatItChange())
 	{
 	case SharedFunctions::PlayerStats::Defense:
-		myDefense -= myItemsVector[itemIndex].GetValue();
+		myDefense -= myItemsVector[itemIndex]->GetValue();
 		break;
 	case SharedFunctions::PlayerStats::Health:
-		myHealth -= myItemsVector[itemIndex].GetValue();
+		myHealth -= myItemsVector[itemIndex]->GetValue();
 		break;
 	case SharedFunctions::PlayerStats::AttackValue:
-		myAttackValue -= myItemsVector[itemIndex].GetValue();
+		myAttackValue -= myItemsVector[itemIndex]->GetValue();
 		break;
 	default:
 		break;
@@ -206,9 +206,9 @@ void Player::DisplayInventory()
 	{
 		for (int i = 0; i < myItemsVector.size(); i++)
 		{
-			std::cout << myItemsVector[i].GetName();
+			std::cout << myItemsVector[i]->GetName();
 			std::cout << "  -->  ";
-			myItemsVector[i].GetItemInfo();
+			myItemsVector[i]->GetItemInfo();
 			SharedFunctions::DrawLine();
 		}
 	}

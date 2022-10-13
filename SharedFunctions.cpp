@@ -1,5 +1,5 @@
 #include "SharedFunctions.h"
-
+#include <memory>
 int SharedFunctions::ReadInputInt()
 {
 	bool okInput = true;

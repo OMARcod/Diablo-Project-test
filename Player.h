@@ -20,7 +20,8 @@ public:
 	void DisplayPlayreHpAndDefence();
 
 
-	void AddItem(const Items& aItem);
+	//void AddItem(const Items& aItem);
+	void AddItem(std::shared_ptr<Items> aItem);
 
 	bool isCapacityNotFull();
 	void DisplayInventory();
@@ -46,6 +47,6 @@ private:
 	void IncreasePlayerStat(int itemIndex);
 	void DecreasePlayerStat(int itemIndex);
 
-	std::vector<Items> myItemsVector;
+	std::vector<std::shared_ptr<Items>> myItemsVector;
 	//Items myItem;
 };

@@ -3,10 +3,10 @@ ItemFactory::~ItemFactory()
 {
 }
 
-Items ItemFactory::CreatItem(const eItemTypes aItemType) const
+std::shared_ptr<Items> ItemFactory::CreatItem(const eItemTypes aItemType) const
 {
 	int itemIndex = static_cast<int>(aItemType);
-	return myItemTypes[itemIndex];
+	return std::make_shared<Items>(myItemTypes[itemIndex]);
 }
 void ItemFactory::InitItemTypes()
 {
