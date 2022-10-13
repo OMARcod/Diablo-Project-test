@@ -22,13 +22,8 @@ private:
 	int myRoundsOnSpellLeft;
 	const ItemType* myItemType;
 	std::string myName;
-	int value;
+	int myValue;
 	SharedFunctions::PlayerStats myWhatItCanChange;
-	bool isSpell;
+	bool myIsSpell;
 	
 };
-
-//ToDo
-//make the logic of displaying and getting the items and change the player defence based on items...
-//fix chest items
-//make it shared ptr

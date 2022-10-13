@@ -1,6 +1,8 @@
 #include "Items.h"
 
 Items::Items()
+	:myRoundsOnSpellLeft(0),myItemType(nullptr),myName(""),value(0),isSpell(false)
+	,myWhatItCanChange(SharedFunctions::PlayerStats::AttackValue)
 {
 }
 

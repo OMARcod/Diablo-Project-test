@@ -32,5 +32,6 @@ void ItemFactory::InitItemTypes()
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetWhatItChange(SharedFunctions::PlayerStats::Health);
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetValue(2000);
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].SetName("Max Health Spill");
+	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].MakeSpell(3);
 }
 

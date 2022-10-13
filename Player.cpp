@@ -8,9 +8,8 @@ Player::Player()
 	, myHealth(myPhysics + (myStrength * 10) + (myAgility * 10))
 	, myCarryingCapacity(myStrength + myAgility)
 	, myItemWaight(10)
-	, mySpillIsActive(false)
-	, myMaxSpillDuration(3)
-	, myCurrentSpillDuration(0)
+	, myHaveSpill(false)
+	,mySpillIndex(0)
 {
 
 }
@@ -81,65 +80,96 @@ int Player::GetCurrentRoom()
 	return this->myCurrentRoom;
 }
 
-void Player::SetCurrentRoom(int aCurrentRoom) 
+void Player::SetCurrentRoom(int aCurrentRoom)
 {
 	this->myCurrentRoom = aCurrentRoom;
 }
 
 
+//void Player::DisableTheSpill()
+//{
+//	int amountOfWaight = 10;
+//	if (mySpillIsActive)
+//	{
+//		myCurrentSpillDuration++;
+//		if (myCurrentSpillDuration >= myMaxSpillDuration)
+//		{
+//			myCurrentSpillDuration = 0;
+//			mySpillIsActive = false;
+//			//myToChange -= //myspill.value;
+//			//assert(myToChange >= 0);
+//			myCarryingCapacity += amountOfWaight;
+//		}
+//	}
+//}
+
 void Player::DisableTheSpill()
 {
 	int amountOfWaight = 10;
-	if (mySpillIsActive)
+	if (myHaveSpill)
 	{
-		myCurrentSpillDuration++;
-		if (myCurrentSpillDuration >= myMaxSpillDuration)
+		myItemsVector[mySpillIndex].UpdateTurnsLeftOnSpell();
+		if (myItemsVector[mySpillIndex].GetRoundsOnSpellLeft() <= 0)
 		{
-			myCurrentSpillDuration = 0;
-			mySpillIsActive = false;
-			//myToChange -= //myspill.value;
-			//assert(myToChange >= 0);
+			myHaveSpill = false;
 			myCarryingCapacity += amountOfWaight;
+			DecreasePlayerStat(mySpillIndex);
 		}
 	}
 }
 
 
 
-
 void Player::AddItem(const Items& aItem)
 {
 	myItemsVector.push_back(aItem);
-	//myItemsVector.push_back(itemFactory.CreatItem(anItemType));
-	//brcause myitems vecotr is a vector of items
+	int ItemIndex = static_cast<int>(myItemsVector.size() - 1);
 
-	//int to change  = myitem gettochange
-	//int value   = myitem.getvalue
+	if (aItem.IsSpell())
+	{
+		myHaveSpill = true;
+		mySpillIndex = ItemIndex;
+	}
 
-	//chsck if is spell 
-	//if(myItem.isSpell())
-	//myMaxSpillDuration = myItem.duration;
-	// mySpillValue;
-	// mySpillToChange;
-	//is Active = true
+	IncreasePlayerStat(ItemIndex);
+}
 
-	//TODO
-
-	switch (myItemsVector[myItemsVector.size() - 1].GetWhatItChange())
+void Player::IncreasePlayerStat(int itemIndex)
+{
+	switch (myItemsVector[itemIndex].GetWhatItChange())
 	{
 	case SharedFunctions::PlayerStats::Defense:
-		myDefense += myItemsVector[myItemsVector.size() - 1].GetValue();
+		myDefense += myItemsVector[itemIndex].GetValue();
 		break;
 	case SharedFunctions::PlayerStats::Health:
-		myHealth += myItemsVector[myItemsVector.size() - 1].GetValue();
+		myHealth += myItemsVector[itemIndex].GetValue();
 		break;
 	case SharedFunctions::PlayerStats::AttackValue:
-		myAttackValue += myItemsVector[myItemsVector.size() - 1].GetValue();
+		myAttackValue += myItemsVector[itemIndex].GetValue();
 		break;
 	default:
 		break;
 	}
 }
+void Player::DecreasePlayerStat(int itemIndex)
+{
+	switch (myItemsVector[itemIndex].GetWhatItChange())
+	{
+	case SharedFunctions::PlayerStats::Defense:
+		myDefense -= myItemsVector[itemIndex].GetValue();
+		break;
+	case SharedFunctions::PlayerStats::Health:
+		myHealth -= myItemsVector[itemIndex].GetValue();
+		break;
+	case SharedFunctions::PlayerStats::AttackValue:
+		myAttackValue -= myItemsVector[itemIndex].GetValue();
+		break;
+	default:
+		break;
+	}
+}
+
+
 
 bool Player::isCapacityNotFull()
 {
@@ -153,7 +183,7 @@ void Player::DisplayPlayreCharacteristics()
 	std::cout << "Player Hp : " << this->GetHealth() << " || Strength: " << this->myStrength
 		<< " || Agility: " << myAgility << " || Physics: " << this->myPhysics << std::endl;
 
-	std::cout << "Defence : " << this->myDefense 
+	std::cout << "Defence : " << this->myDefense
 		<< " || Attack value: " << this->myAttackValue << std::endl;
 }
 
@@ -188,3 +218,4 @@ void Player::DisplayInventory()
 	}
 	SharedFunctions::DrawLine();
 }
+

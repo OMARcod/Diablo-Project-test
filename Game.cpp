@@ -23,13 +23,13 @@ Game::Game()
 	myRooms[4].AddDoor(&myDoorRoom4);
 	myRooms[5].AddDoor(&myDoorRoom5);
 
+	itemFactory.InitItemTypes();
 	myNormalChest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
 	myMagicCheest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill));
 
 	myRooms[0].AddChest(&myMagicCheest);
 	myRooms[1].AddChest(&myNormalChest);
 
-	itemFactory.InitItemTypes();
 
 	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
 	myRooms[1].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));

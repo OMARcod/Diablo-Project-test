@@ -3,6 +3,7 @@
 #include "ItemType.h"
 #include <array>
 #include "SharedFunctions.h"
+#include <memory>
 
 class ItemFactory
 {
@@ -26,6 +27,7 @@ public:
 
 	void InitItemTypes();
 	Items CreatItem(const eItemTypes aItemType) const;
+	//Items CreatItem(const eItemTypes aItemType) const;
 
 private:
 	std::array<ItemType, static_cast<int>(eItemTypes::ItemTypeCount)> myItemTypes;

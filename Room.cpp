@@ -38,6 +38,8 @@ void Room::EnterRoom()
 			std::cout << "Your healt after: ";
 			myPlayer->DisplayPlayreHpAndDefence();
 			system("pause");
+			myPlayer->DisableTheSpill();
+
 		}
 	}
 }

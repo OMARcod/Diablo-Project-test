@@ -28,8 +28,8 @@ public:
 	void DisableTheSpill();
 	
 private:
-	bool mySpillIsActive;
-
+	bool myHaveSpill;
+	int mySpillIndex;
 
 	int myCurrentRoom;
 	int myStrength; 
@@ -43,8 +43,8 @@ private:
 
 	int myItemWaight;
 
-	int myMaxSpillDuration;
-	int myCurrentSpillDuration;
+	void IncreasePlayerStat(int itemIndex);
+	void DecreasePlayerStat(int itemIndex);
 
 	std::vector<Items> myItemsVector;
 	//Items myItem;
