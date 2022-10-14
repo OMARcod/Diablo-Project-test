@@ -86,22 +86,6 @@ void Player::SetCurrentRoom(int aCurrentRoom)
 }
 
 
-//void Player::DisableTheSpill()
-//{
-//	int amountOfWaight = 10;
-//	if (mySpillIsActive)
-//	{
-//		myCurrentSpillDuration++;
-//		if (myCurrentSpillDuration >= myMaxSpillDuration)
-//		{
-//			myCurrentSpillDuration = 0;
-//			mySpillIsActive = false;
-//			//myToChange -= //myspill.value;
-//			//assert(myToChange >= 0);
-//			myCarryingCapacity += amountOfWaight;
-//		}
-//	}
-//}
 
 void Player::DisableTheSpill()
 {

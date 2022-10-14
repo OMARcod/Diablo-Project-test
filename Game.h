@@ -15,8 +15,8 @@ public:
 	void GameLoop();
 
 private:
-	const int noRoom;
-	const int arraySize;
+	const int myNoRoom;
+	const int myArraySize;
 	int myRoomNr;
 
 	Player myPlayer;
@@ -31,8 +31,8 @@ private:
 	Chest myNormalChest;
 	Chest myMagicCheest;
 
-	ItemFactory itemFactory;
-	Items item;
+	ItemFactory myItemFactory;
+	Items myItem;
 
 	std::vector<Room> myRooms;
 };

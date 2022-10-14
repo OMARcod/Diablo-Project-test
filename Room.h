@@ -31,7 +31,7 @@ private:
 	Chest* myChest;
 	std::shared_ptr<Items> myItems;
 
-	EnemyFactory enemyFactory;
+	EnemyFactory myEnemyFactory;
 	
 
 	void DisplayEnemiesWithNumbersAndHealth();

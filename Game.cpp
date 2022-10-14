@@ -1,9 +1,9 @@
 #include "Game.h"
 
 Game::Game()
-	:noRoom(-1), arraySize(6), myRoomNr(0),
+	:myNoRoom(-1), myArraySize(6), myRoomNr(0),
 	myRoom(myPlayer),
-	myDoorRoom0(0, 1, 5, noRoom, false, true),
+	myDoorRoom0(0, 1, 5, myNoRoom, false, true),
 	myDoorRoom1(0, 2),
 	myDoorRoom2(1, 3),
 	myDoorRoom3(2, 4, 5),
@@ -12,7 +12,7 @@ Game::Game()
 	myNormalChest(false),
 	myMagicCheest( false)
 {
-	for (int i = 0; i < arraySize; i++)
+	for (int i = 0; i < myArraySize; i++)
 	{
 		myRooms.push_back(myRoom);
 	}
@@ -23,19 +23,19 @@ Game::Game()
 	myRooms[4].AddDoor(&myDoorRoom4);
 	myRooms[5].AddDoor(&myDoorRoom5);
 
-	itemFactory.InitItemTypes();
-	myNormalChest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
-	myMagicCheest.AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill));
+	myItemFactory.InitItemTypes();
+	myNormalChest.AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
+	myMagicCheest.AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::MaxHealthSpill));
 
 	myRooms[0].AddChest(&myMagicCheest);
 	myRooms[1].AddChest(&myNormalChest);
 
 
-	myRooms[0].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
-	myRooms[1].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
-	myRooms[2].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
-	myRooms[4].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
-	myRooms[5].AddItem(itemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[0].AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Shield));
+	myRooms[1].AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[2].AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Milk));
+	myRooms[4].AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
+	myRooms[5].AddItem(myItemFactory.CreatItem(ItemFactory::eItemTypes::Sword));
 
 }
 

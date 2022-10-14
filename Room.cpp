@@ -3,7 +3,7 @@
 Room::Room(Player& player)
 	:myPlayer(&player), myDoor(nullptr), myChest(nullptr)
 {
-	enemyFactory.Init();
+	myEnemyFactory.Init();
 }
 
 Room::~Room()
@@ -53,7 +53,7 @@ void Room::AddDoor(Door* door)
 	for (int i = 0; i < nrOfEnemies; i++)
 	{
 		randomEnemy = SharedFunctions::GetRandomNumber(0, 2);
-		myEnemies.push_back(enemyFactory.CreatEnemy(static_cast<eEnemyType>(randomEnemy)));
+		myEnemies.push_back(myEnemyFactory.CreatEnemy(static_cast<eEnemyType>(randomEnemy)));
 	}
 }
 
@@ -138,7 +138,7 @@ void Room::DeleteEnemyIfDead()
 
 int Room::DispalyOptionFightOrDoor()
 {
-	
+
 
 	int input = 0;
 	if (myEnemies.size() > 0)
@@ -161,13 +161,13 @@ int Room::DispalyOptionFightOrDoor()
 			if (input == 2)
 			{
 				DisplayItem();
-			} 
+			}
 		}
 	}
 	return input;
 }
 
-void Room::DisplayItem() 
+void Room::DisplayItem()
 {
 	std::string empty = "";
 	bool thereIsItem = false;
@@ -178,68 +178,68 @@ void Room::DisplayItem()
 	if ((myEnemies.size() == 0) && thereIsItem)
 	{
 
-			int input = static_cast<int>(ItemFactory::eItemTypes::NoItem);
+		int input = static_cast<int>(ItemFactory::eItemTypes::NoItem);
 
-			bool itemIsNotTaken = true;
+		bool itemIsNotTaken = true;
 
-			while (input != 0)
+		while (input != 0)
+		{
+			if (itemIsNotTaken)
+			{
+				std::cout << "There is an Itme in the room:" << std::endl;
+				std::cout << myItems->GetName();
+				std::cout << "  -->  ";
+				myItems->GetItemInfo();
+				SharedFunctions::DrawLine();
+				std::cout << "1. Take the itme" << std::endl;
+			}
+			std::cout << "2. Player info" << std::endl;
+			std::cout << "3. Display Inventory" << std::endl;
+			if (isThereAChest())
+			{
+				std::cout << "4. Open The Chest" << std::endl;
+			}
+			std::cout << "0. Exit" << std::endl;
+			input = SharedFunctions::ReadInputInt(0, 4);
+			if (input == 1)
 			{
 				if (itemIsNotTaken)
 				{
-					std::cout << "There is an Itme in the room:" << std::endl;
-					std::cout << myItems->GetName();
-					std::cout << "  -->  ";
-					myItems->GetItemInfo();
-					SharedFunctions::DrawLine();
-					std::cout << "1. Take the itme" << std::endl;
+					itemIsNotTaken = false;
+					std::cout << std::endl;
+					AddItemToInentory(myItems);
 				}
-				std::cout << "2. Player info" << std::endl;
-				std::cout << "3. Display Inventory" << std::endl;
+			}
+			if (input == 4)
+			{
 				if (isThereAChest())
 				{
-					std::cout << "4. Open The Chest" << std::endl;
-				}
-				std::cout << "0. Exit" << std::endl;
-				input = SharedFunctions::ReadInputInt(0, 4);
-				if (input == 1)
-				{
-					if (itemIsNotTaken)
+					if (!(myChest->isChestEmpty()))
 					{
-						itemIsNotTaken = false;
-						std::cout << std::endl;
-						AddItemToInentory(myItems);
-					}
-				}
-				if (input == 4)
-				{
-					if (isThereAChest())
-					{
-						if (!(myChest->isChestEmpty()))
+						bool isItemTaken = myChest->EnterChest();
+						if (isItemTaken)
 						{
-							bool isItemTaken = myChest->EnterChest();
-							if (isItemTaken)
-							{
-								AddItemToInentory(myChest->GetChestItem());
-							}
-						}
-						else
-						{
-							std::cout << "Empty!!" << std::endl;
+							AddItemToInentory(myChest->GetChestItem());
 						}
 					}
+					else
+					{
+						std::cout << "Empty!!" << std::endl;
+					}
 				}
-				if (input == 3)
-				{
-					myPlayer->DisplayInventory();
-				}
-				if (input == 2)
-				{
-					myPlayer->DisplayPlayreCharacteristics();
-				}
-
-				system("pause");
-				system("cls");
 			}
+			if (input == 3)
+			{
+				myPlayer->DisplayInventory();
+			}
+			if (input == 2)
+			{
+				myPlayer->DisplayPlayreCharacteristics();
+			}
+
+			system("pause");
+			system("cls");
+		}
 
 	}
 }
@@ -265,7 +265,7 @@ void Room::FightEnemies()
 			}
 		}
 		int oldSize = static_cast<int>(myEnemies.size());
-		
+
 
 		DeleteEnemyIfDead();
 		DisplayAfterFightInfo(oldSize, oldHelath, oldDefence);
@@ -283,7 +283,7 @@ void Room::FightEnemies()
 
 }
 
-void Room::DisplayAfterFightInfo(const int anOldEnemySize,const int anOldHealth,const int anOldDefence)
+void Room::DisplayAfterFightInfo(const int anOldEnemySize, const int anOldHealth, const int anOldDefence)
 {
 	myPlayer->DisableTheSpill();
 	std::cout << "You Killed " << anOldEnemySize - myEnemies.size() << std::endl;
@@ -294,7 +294,7 @@ void Room::DisplayAfterFightInfo(const int anOldEnemySize,const int anOldHealth,
 		SharedFunctions::DrawLine();
 		std::cout << "Old HP: " << anOldHealth << " || New Hp --> " << myPlayer->GetHealth() << std::endl;
 		std::cout << "Old Defence: " << anOldDefence << " || New Defence --> " << myPlayer->GetDefence() << std::endl;
-		SharedFunctions::DrawLine(); 
+		SharedFunctions::DrawLine();
 	}
 	else
 	{
@@ -316,17 +316,17 @@ void Room::UseDoor()
 
 void Room::AddItemToInentory(std::shared_ptr<Items> aItem)
 {
-	
-		if (myPlayer->isCapacityNotFull())
-		{
-			myPlayer->AddItem(aItem);
-			myPlayer->DisplayPlayreCharacteristics();
-		}
-		else
-		{
-			std::cout << "Your Inventroy Is Full" << std::endl;
-			system("pause");
-		}
+
+	if (myPlayer->isCapacityNotFull())
+	{
+		myPlayer->AddItem(aItem);
+		myPlayer->DisplayPlayreCharacteristics();
+	}
+	else
+	{
+		std::cout << "Your Inventroy Is Full" << std::endl;
+		system("pause");
+	}
 }
 
 bool Room::isThereAChest()
