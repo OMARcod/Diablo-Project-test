@@ -21,12 +21,6 @@ Items::~Items()
 {
 }
 
-void Items::UpdateTurnsLeftOnSpell()
-{
-	myRoundsOnSpellLeft--;
-	assert(myRoundsOnSpellLeft >= 0);
-}
-
 bool Items::SpellHasEnded() const
 {
 	return myRoundsOnSpellLeft == 0;
@@ -37,20 +31,25 @@ bool Items::IsSpell() const
 	return myIsSpell;
 }
 
-
 int Items::GetRoundsOnSpellLeft() const
 {
 	return myRoundsOnSpellLeft;
 }
 
-SharedFunctions::PlayerStats Items::GetWhatItChange()
-{
-	return myItemType->GetWhatItChange();
-}
-
 int Items::GetValue()
 {
 	return myValue;
+}
+
+void Items::UpdateTurnsLeftOnSpell()
+{
+	myRoundsOnSpellLeft--;
+	assert(myRoundsOnSpellLeft >= 0);
+}
+
+SharedFunctions::PlayerStats Items::GetWhatItChange()
+{
+	return myItemType->GetWhatItChange();
 }
 
 std::string Items::GetName()

@@ -13,7 +13,6 @@ public:
 
 
 
-	//Enemy CreatEnemy(const eEnemyType aEnemyType) const;
 	std::shared_ptr<Enemy> CreatEnemy(const eEnemyType aEnemyType) const;
 private:
 

@@ -175,12 +175,9 @@ void Room::DisplayItem()
 	{
 		thereIsItem = true;
 	}
-	// ! size > 0
 	if ((myEnemies.size() == 0) && thereIsItem)
 	{
 
-		//if (myItemType != ItemFactory::eItemTypes::NoItem)
-		{
 			int input = static_cast<int>(ItemFactory::eItemTypes::NoItem);
 
 			bool itemIsNotTaken = true;
@@ -244,7 +241,6 @@ void Room::DisplayItem()
 				system("cls");
 			}
 
-		}
 	}
 }
 
@@ -321,7 +317,6 @@ void Room::UseDoor()
 void Room::AddItemToInentory(std::shared_ptr<Items> aItem)
 {
 	
-//	if (myItems.GetName() != ItemFactory::eItemTypes::NoItem)
 		if (myPlayer->isCapacityNotFull())
 		{
 			myPlayer->AddItem(aItem);

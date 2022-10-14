@@ -20,8 +20,6 @@ const int& EnemyType::GetStrength() const
 	return myStrength;
 }
 
-
-
 const std::string& EnemyType::GetName() const
 {
 	return myName;
@@ -36,7 +34,6 @@ void EnemyType::SetStrength(const int& aStrength)
 {
 	myStrength = aStrength;
 }
-
 
 void EnemyType::SetName(const std::string& aName)
 {

@@ -15,7 +15,6 @@ public:
 	bool EnterChest();
 	std::shared_ptr<Items> GetChestItem();
 	bool isChestEmpty();
-	//void AddItem(const Items& aItem);
 	void AddItem(std::shared_ptr<Items> aItem);
 	
 private:

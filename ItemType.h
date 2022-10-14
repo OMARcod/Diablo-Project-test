@@ -25,9 +25,9 @@ public:
 
 private:
 
-	std::string myName;
 	bool myIsSpell;
 	int mySpellLength;
 	int myValue;
+	std::string myName;
 	SharedFunctions::PlayerStats myWhatItCanChange;
 };

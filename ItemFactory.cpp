@@ -3,11 +3,6 @@ ItemFactory::~ItemFactory()
 {
 }
 
-std::shared_ptr<Items> ItemFactory::CreatItem(const eItemTypes aItemType) const
-{
-	int itemIndex = static_cast<int>(aItemType);
-	return std::make_shared<Items>(myItemTypes[itemIndex]);
-}
 void ItemFactory::InitItemTypes()
 {
 	myItemTypes[static_cast<int>(eItemTypes::Heart)].SetWhatItChange(SharedFunctions::PlayerStats::Health);
@@ -35,3 +30,8 @@ void ItemFactory::InitItemTypes()
 	myItemTypes[static_cast<int>(eItemTypes::MaxHealthSpill)].MakeSpell(3);
 }
 
+std::shared_ptr<Items> ItemFactory::CreatItem(const eItemTypes aItemType) const
+{
+	int itemIndex = static_cast<int>(aItemType);
+	return std::make_shared<Items>(myItemTypes[itemIndex]);
+}

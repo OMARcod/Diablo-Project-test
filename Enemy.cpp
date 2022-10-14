@@ -2,7 +2,6 @@
 Enemy::Enemy(const EnemyType& aEnemyType)
 	:myEnemyType(&aEnemyType)
 {
-	//myEnemyType = std::make_shared<EnemyType>(&aEnemyType);//
 	myHealth = myEnemyType->GetMaxHealth();
 }
 
@@ -24,16 +23,15 @@ bool Enemy::IsAlive()
 	}
 }
 
-int Enemy::GetHealth()
-{
-	return this->myHealth;
-}
-
 int Enemy::GetAttackValue()
 {
 	return myEnemyType->GetStrength();
 }
 
+int Enemy::GetHealth()
+{
+	return this->myHealth;
+}
 
 void Enemy::TakeDamage(int anAttackValue)
 {
@@ -54,4 +52,6 @@ std::string Enemy::GetName() const
 {
 	return myEnemyType->GetName();
 }
+
+
 
